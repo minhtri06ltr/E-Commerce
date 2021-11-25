@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import {
   Search,
@@ -47,11 +46,12 @@ const Logo = styled.h1`
 `;
 const Input = styled.input`
   border: none;
+  padding-left: 10px;
 `;
 const MenuItem = styled.div`
- font-size:14px
- cursor:pointer
- margin-left:25px
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 25px;
 `;
 //render component
 const Navbar = () => {
@@ -61,7 +61,7 @@ const Navbar = () => {
         <Left>
           <Language>EN</Language>
           <SearchContainer>
-            <Input />
+            <Input placeholder="Find your product" />
             <Search
               style={{
                 color: "gray",

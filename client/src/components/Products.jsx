@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { popularProducts } from "../data";
 import ProductItem from "./items/ProductItem";
