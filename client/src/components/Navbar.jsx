@@ -39,7 +39,7 @@ const SearchContainer = styled.div`
   display: flex;
   align-items: center;
   margin-left: 25px;
-  padding: 5px;
+  /* padding: 5px; */
 `;
 const Logo = styled.h1`
   font-weight: bold;
@@ -47,6 +47,7 @@ const Logo = styled.h1`
 const Input = styled.input`
   border: none;
   padding-left: 10px;
+  height: 30px;
 `;
 const MenuItem = styled.div`
   font-size: 14px;
@@ -65,7 +66,7 @@ const Navbar = () => {
             <Search
               style={{
                 color: "gray",
-                fontSize: "16px",
+                fontSize: "24px",
               }}
             />
           </SearchContainer>
