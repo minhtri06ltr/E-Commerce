@@ -31,6 +31,7 @@ const Input = styled.input`
   flex: 1;
   min-width: 40%;
   margin: 10px 0;
+
   padding: 10px;
 `;
 
@@ -42,11 +43,12 @@ const Button = styled.button`
   background-color: teal;
   color: white;
   cursor: pointer;
+  margin: auto;
   margin-bottom: 10px;
 `;
 const Link = styled.a`
   cursor: pointer;
-  margin: 5px 0;
+  margin: 5px auto;
   font-size: 12px;
 `;
 

@@ -35,7 +35,13 @@ const Input = styled.input`
 `;
 const Agreement = styled.span`
   font-size: 12px;
-  margin: 20px 0;
+  margin: 20px auto;
+`;
+const WrapButtonAndLink = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
 `;
 const Button = styled.button`
   width: 40%;
@@ -48,7 +54,7 @@ const Button = styled.button`
 `;
 const Link = styled.a`
   cursor: pointer;
-  margin: 5px 0;
+  margin: 15px 0;
   font-size: 12px;
 `;
 
@@ -68,8 +74,10 @@ const Register = () => {
             Lorem ipsum dolor sit amet consectetur
             adipisicing elit. Fugiat, numquam?
           </Agreement>
-          <Button>REGISTER NOW</Button>
-          <Link>ALREADY HAVE A ACCOUNT?</Link>
+          <WrapButtonAndLink>
+            <Button>REGISTER NOW</Button>
+            <Link>ALREADY HAVE A ACCOUNT?</Link>
+          </WrapButtonAndLink>
         </Form>
       </Wrapper>
     </Container>

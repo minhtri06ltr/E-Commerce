@@ -1,8 +1,5 @@
 import styled from "styled-components";
-import Navbar from "../components/Navbar";
-import Announcement from "../components/Announcement";
-import Letter from "../components/Letter";
-import Footer from "../components/Footer";
+import Layout from "../components/layouts/Layout";
 import {
   RemoveCircleOutline,
   AddCircleOutline,
@@ -96,64 +93,62 @@ const Button = styled.button`
 const ProductDetail = () => {
   return (
     <Container>
-      <Navbar />
-      <Announcement />
-      <Wrapper>
-        <ImgContainer>
-          <Image src="https://i.redd.it/5m2flzftc3e71.jpg" />
-        </ImgContainer>
-        <InfoContainer>
-          <Title>SUI CHAN</Title>
-          <Description>
-            Lorem ipsum, dolor sit amet
-            consectetur adipisicing elit.
-            Cupiditate, iste!
-          </Description>
-          <Price>$ 20</Price>
-          <FilterContainer>
-            <Filter>
-              <FilterTitle>Color</FilterTitle>
-              <FilterColor color="black" />
-              <FilterColor color="darkblue" />
-              <FilterColor color="gray" />
-            </Filter>
-            <Filter>
-              <FilterTitle>Size</FilterTitle>
-              <FilterSize>
-                <FilterSizeOption>
-                  XS
-                </FilterSizeOption>
-                <FilterSizeOption>
-                  S
-                </FilterSizeOption>
-                <FilterSizeOption>
-                  M
-                </FilterSizeOption>
-                <FilterSizeOption>
-                  L
-                </FilterSizeOption>
-                <FilterSizeOption>
-                  XL
-                </FilterSizeOption>
-              </FilterSize>
-            </Filter>
-          </FilterContainer>
-          <AddContainer>
-            <QuantityContainer>
-              <RemoveCircleOutline
-                style={{ color: "red" }}
-              />
-              <Quantity>1</Quantity>
-              <AddCircleOutline
-                style={{ color: "teal" }}
-              />
-            </QuantityContainer>
-            <Button>ADD TO CART</Button>
-          </AddContainer>
-        </InfoContainer>
-      </Wrapper>
-      <Letter />
-      <Footer />
+      <Layout>
+        <Wrapper>
+          <ImgContainer>
+            <Image src="https://i.redd.it/5m2flzftc3e71.jpg" />
+          </ImgContainer>
+          <InfoContainer>
+            <Title>SUI CHAN</Title>
+            <Description>
+              Lorem ipsum, dolor sit amet
+              consectetur adipisicing elit.
+              Cupiditate, iste!
+            </Description>
+            <Price>$ 20</Price>
+            <FilterContainer>
+              <Filter>
+                <FilterTitle>Color</FilterTitle>
+                <FilterColor color="black" />
+                <FilterColor color="darkblue" />
+                <FilterColor color="gray" />
+              </Filter>
+              <Filter>
+                <FilterTitle>Size</FilterTitle>
+                <FilterSize>
+                  <FilterSizeOption>
+                    XS
+                  </FilterSizeOption>
+                  <FilterSizeOption>
+                    S
+                  </FilterSizeOption>
+                  <FilterSizeOption>
+                    M
+                  </FilterSizeOption>
+                  <FilterSizeOption>
+                    L
+                  </FilterSizeOption>
+                  <FilterSizeOption>
+                    XL
+                  </FilterSizeOption>
+                </FilterSize>
+              </Filter>
+            </FilterContainer>
+            <AddContainer>
+              <QuantityContainer>
+                <RemoveCircleOutline
+                  style={{ color: "red" }}
+                />
+                <Quantity>1</Quantity>
+                <AddCircleOutline
+                  style={{ color: "teal" }}
+                />
+              </QuantityContainer>
+              <Button>ADD TO CART</Button>
+            </AddContainer>
+          </InfoContainer>
+        </Wrapper>
+      </Layout>
     </Container>
   );
 };

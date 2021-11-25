@@ -39,7 +39,6 @@ const SearchContainer = styled.div`
   display: flex;
   align-items: center;
   margin-left: 25px;
-  /* padding: 5px; */
 `;
 const Logo = styled.h1`
   font-weight: bold;

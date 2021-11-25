@@ -1,8 +1,5 @@
 import styled from "styled-components";
-import Navbar from "../components/Navbar";
-import Announcement from "../components/Announcement";
-import Letter from "../components/Letter";
-import Footer from "../components/Footer";
+import Layout from "../components/layouts/Layout";
 import Products from "../components/Products";
 const Container = styled.div``;
 const Title = styled.h1`
@@ -28,45 +25,50 @@ const Option = styled.option``;
 const ProductList = () => {
   return (
     <Container>
-      <Navbar />
-      <Announcement />
-      <Title>CPU</Title>
-      <FilterContainer>
-        <Filter>
-          <FilterText>Filter Products</FilterText>
-          <Select>
-            <Option disabled selected>
-              Color
-            </Option>
-            <Option>Red</Option>
-            <Option>Blue</Option>
-            <Option>Purple</Option>
-            <Option>Yellow</Option>
-            <Option>Green</Option>
-          </Select>
-          <Select>
-            <Option disabled selected>
-              Size
-            </Option>
-            <Option>XS</Option>
-            <Option>S</Option>
-            <Option>M</Option>
-            <Option>L</Option>
-            <Option>XL</Option>
-          </Select>
-        </Filter>
-        <Filter>
-          <FilterText>Sort Products</FilterText>
-          <Select>
-            <Option selected>Newest</Option>
-            <Option>Price (asc)</Option>
-            <Option>Price (desc)</Option>
-          </Select>
-        </Filter>
-      </FilterContainer>
-      <Products />
-      <Letter />
-      <Footer />
+      <Layout>
+        <Title>CPU</Title>
+        <FilterContainer>
+          <Filter>
+            <FilterText>
+              Filter Products
+            </FilterText>
+            <Select defaultValue="chooseColor">
+              <Option
+                disabled
+                value="chooseColor"
+              >
+                Color
+              </Option>
+              <Option>Red</Option>
+              <Option>Blue</Option>
+              <Option>Purple</Option>
+              <Option>Yellow</Option>
+              <Option>Green</Option>
+            </Select>
+            <Select defaultValue="chooseSize">
+              <Option disabled value="chooseSize">
+                Size
+              </Option>
+              <Option>XS</Option>
+              <Option>S</Option>
+              <Option>M</Option>
+              <Option>L</Option>
+              <Option>XL</Option>
+            </Select>
+          </Filter>
+          <Filter>
+            <FilterText>Sort Products</FilterText>
+            <Select defaultValue="chooseSortType">
+              <Option value="chooseSortType">
+                Newest
+              </Option>
+              <Option>Price (asc)</Option>
+              <Option>Price (desc)</Option>
+            </Select>
+          </Filter>
+        </FilterContainer>
+        <Products />
+      </Layout>
     </Container>
   );
 };

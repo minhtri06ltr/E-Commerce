@@ -3,10 +3,7 @@ import {
   RemoveCircleOutline,
 } from "@mui/icons-material";
 import styled from "styled-components";
-import Announcement from "../components/Announcement";
-import Footer from "../components/Footer";
-import Letter from "../components/Letter";
-import Navbar from "../components/Navbar";
+import Layout from "../components/layouts/Layout";
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -137,142 +134,140 @@ const Button = styled.button`
 const Cart = () => {
   return (
     <Container>
-      <Navbar />
-      <Announcement />
-      <Wrapper>
-        <Title>YOUR BAG</Title>
-        <Top>
-          <TopButton>
-            COUNTINUE SHOPPING
-          </TopButton>
-          <TopTexts>
-            <TopText>Shopping Bag(2)</TopText>
-            <TopText>Your Wishlist(0)</TopText>
-          </TopTexts>
-          <TopButton type="filled">
-            CHECKOUT NOW
-          </TopButton>
-        </Top>
-        <Bottom>
-          <Info>
-            <ProductItem>
-              <ProductDetail>
-                <Image src="https://i.redd.it/5m2flzftc3e71.jpg" />
-                <Details>
-                  <ProductName>
-                    <b>Product:</b>
-                    SUI CHAN
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b>
-                    42457
-                  </ProductId>
-                  <ProductColor color="black" />
-                  <ProductSize>
-                    <b>Size:</b>
-                    37.5
-                  </ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductQuantityContainer>
-                  <RemoveCircleOutline
-                    style={{ color: "red" }}
-                  />
-                  <ProductQuantity>
-                    2
-                  </ProductQuantity>
-                  <AddCircleOutline
-                    style={{ color: "teal" }}
-                  />
-                  <ProductPrice>
-                    $ 30
-                  </ProductPrice>
-                </ProductQuantityContainer>
-              </PriceDetail>
-            </ProductItem>
+      <Layout>
+        <Wrapper>
+          <Title>YOUR BAG</Title>
+          <Top>
+            <TopButton>
+              COUNTINUE SHOPPING
+            </TopButton>
+            <TopTexts>
+              <TopText>Shopping Bag(2)</TopText>
+              <TopText>Your Wishlist(0)</TopText>
+            </TopTexts>
+            <TopButton type="filled">
+              CHECKOUT NOW
+            </TopButton>
+          </Top>
+          <Bottom>
+            <Info>
+              <ProductItem>
+                <ProductDetail>
+                  <Image src="https://i.redd.it/5m2flzftc3e71.jpg" />
+                  <Details>
+                    <ProductName>
+                      <b>Product:</b>
+                      SUI CHAN
+                    </ProductName>
+                    <ProductId>
+                      <b>ID:</b>
+                      42457
+                    </ProductId>
+                    <ProductColor color="black" />
+                    <ProductSize>
+                      <b>Size:</b>
+                      37.5
+                    </ProductSize>
+                  </Details>
+                </ProductDetail>
+                <PriceDetail>
+                  <ProductQuantityContainer>
+                    <RemoveCircleOutline
+                      style={{ color: "red" }}
+                    />
+                    <ProductQuantity>
+                      2
+                    </ProductQuantity>
+                    <AddCircleOutline
+                      style={{ color: "teal" }}
+                    />
+                    <ProductPrice>
+                      $ 30
+                    </ProductPrice>
+                  </ProductQuantityContainer>
+                </PriceDetail>
+              </ProductItem>
 
-            <Hr />
+              <Hr />
 
-            <ProductItem>
-              <ProductDetail>
-                <Image src="https://i.redd.it/5m2flzftc3e71.jpg" />
-                <Details>
-                  <ProductName>
-                    <b>Product:</b>
-                    SUI CHAN
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b>
-                    42457
-                  </ProductId>
-                  <ProductColor color="black" />
-                  <ProductSize>
-                    <b>Size:</b>
-                    37.5
-                  </ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductQuantityContainer>
-                  <RemoveCircleOutline
-                    style={{ color: "red" }}
-                  />
-                  <ProductQuantity>
-                    2
-                  </ProductQuantity>
-                  <AddCircleOutline
-                    style={{ color: "teal" }}
-                  />
-                  <ProductPrice>
-                    $ 30
-                  </ProductPrice>
-                </ProductQuantityContainer>
-              </PriceDetail>
-            </ProductItem>
-          </Info>
-          <Summary>
-            <SummaryTitle>
-              ORDER SUMMARY
-            </SummaryTitle>
-            <SummaryItem>
-              <SummaryItemText>
-                Subtotal
-              </SummaryItemText>
-              <SummaryItemPrice>
-                $ 80
-              </SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText>
-                Estimated Shipping
-              </SummaryItemText>
-              <SummaryItemPrice>
-                $ 5
-              </SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText>
-                Shipping Discount
-              </SummaryItemText>
-              <SummaryItemPrice>
-                $ -5
-              </SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem type="total">
-              <SummaryItemText>
-                Total
-              </SummaryItemText>
-              <SummaryItemPrice>
-                $ 80
-              </SummaryItemPrice>
-            </SummaryItem>
-            <Button>CHECKOUT NOW</Button>
-          </Summary>
-        </Bottom>
-      </Wrapper>
-      <Letter />
-      <Footer />
+              <ProductItem>
+                <ProductDetail>
+                  <Image src="https://i.redd.it/5m2flzftc3e71.jpg" />
+                  <Details>
+                    <ProductName>
+                      <b>Product:</b>
+                      SUI CHAN
+                    </ProductName>
+                    <ProductId>
+                      <b>ID:</b>
+                      42457
+                    </ProductId>
+                    <ProductColor color="black" />
+                    <ProductSize>
+                      <b>Size:</b>
+                      37.5
+                    </ProductSize>
+                  </Details>
+                </ProductDetail>
+                <PriceDetail>
+                  <ProductQuantityContainer>
+                    <RemoveCircleOutline
+                      style={{ color: "red" }}
+                    />
+                    <ProductQuantity>
+                      2
+                    </ProductQuantity>
+                    <AddCircleOutline
+                      style={{ color: "teal" }}
+                    />
+                    <ProductPrice>
+                      $ 30
+                    </ProductPrice>
+                  </ProductQuantityContainer>
+                </PriceDetail>
+              </ProductItem>
+            </Info>
+            <Summary>
+              <SummaryTitle>
+                ORDER SUMMARY
+              </SummaryTitle>
+              <SummaryItem>
+                <SummaryItemText>
+                  Subtotal
+                </SummaryItemText>
+                <SummaryItemPrice>
+                  $ 80
+                </SummaryItemPrice>
+              </SummaryItem>
+              <SummaryItem>
+                <SummaryItemText>
+                  Estimated Shipping
+                </SummaryItemText>
+                <SummaryItemPrice>
+                  $ 5
+                </SummaryItemPrice>
+              </SummaryItem>
+              <SummaryItem>
+                <SummaryItemText>
+                  Shipping Discount
+                </SummaryItemText>
+                <SummaryItemPrice>
+                  $ -5
+                </SummaryItemPrice>
+              </SummaryItem>
+              <SummaryItem type="total">
+                <SummaryItemText>
+                  Total
+                </SummaryItemText>
+                <SummaryItemPrice>
+                  $ 80
+                </SummaryItemPrice>
+              </SummaryItem>
+              <Button>CHECKOUT NOW</Button>
+            </Summary>
+          </Bottom>
+        </Wrapper>
+      </Layout>
     </Container>
   );
 };
