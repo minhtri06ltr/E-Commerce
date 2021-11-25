@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { mobile } from "../responsive";
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -18,6 +18,7 @@ const Wrapper = styled.div`
   padding: 20px;
   width: 40%;
   background-color: white;
+  ${mobile({ width: "75%" })}
 `;
 const Title = styled.h1`
   font-size: 24px;
@@ -36,6 +37,7 @@ const Input = styled.input`
 const Agreement = styled.span`
   font-size: 12px;
   margin: 20px auto;
+  text-align: center;
 `;
 const WrapButtonAndLink = styled.div`
   display: flex;

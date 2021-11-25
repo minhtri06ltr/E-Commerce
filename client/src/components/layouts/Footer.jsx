@@ -7,11 +7,12 @@ import {
   Twitter,
   MailOutline,
 } from "@mui/icons-material";
-
+import { mobile } from "../../responsive";
 import styled from "styled-components";
 
 const Container = styled.div`
   display: flex;
+  ${mobile({ flexDirection: "column" })}
 `;
 const Left = styled.div`
   flex: 1;
@@ -19,12 +20,16 @@ const Left = styled.div`
   flex-direction: column;
   padding: 20px;
 `;
-const Logo = styled.h1``;
+const Logo = styled.h1`
+  ${mobile({ textAlign: "center" })}
+`;
 const Description = styled.p`
   margin: 20px 0px;
+  ${mobile({ textAlign: "center" })}
 `;
 const SocialContainer = styled.div`
   display: flex;
+  ${mobile({ justifyContent: "center" })}
 `;
 const SocialIcon = styled.div`
   border-radius: 50%;
@@ -36,6 +41,7 @@ const SocialIcon = styled.div`
   align-items: center;
   justify-content: center;
   margin-right: 20px;
+  ${mobile({ margin: "0 10px" })}
 `;
 const Center = styled.div`
   flex: 1;
@@ -43,6 +49,7 @@ const Center = styled.div`
 `;
 const Title = styled.h1`
   margin-bottom: 30px;
+  ${mobile({ textAlign: "center" })}
 `;
 const List = styled.ul`
   margin: 0px;
@@ -50,6 +57,7 @@ const List = styled.ul`
   list-style: none;
   display: flex;
   flex-wrap: wrap;
+  ${mobile({ textAlign: "center" })}
 `;
 const ListItem = styled.li`
   width: 50%;
@@ -58,11 +66,18 @@ const ListItem = styled.li`
 const Right = styled.div`
   flex: 1;
   padding: 20px;
+  ${mobile({
+    backgroundColor: "#fcf5f5",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  })}
 `;
 const ContactItem = styled.div`
   margin-bottom: 20px;
   display: flex;
   align-items: center;
+  ${mobile({ textAlign: "center" })}
 `;
 const Payment = styled.img`
   width: 50%;

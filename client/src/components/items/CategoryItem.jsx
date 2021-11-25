@@ -1,15 +1,18 @@
 import styled from "styled-components";
+import { mobile } from "../../responsive";
 
 const Container = styled.div`
   flex: 1;
   height: 70vh;
   margin: 3px;
   position: relative;
+  ${mobile({ margin: "3px 0" })}
 `;
 const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  ${mobile({ width: "30vh" })}
 `;
 const Title = styled.h1`
   color: white;
