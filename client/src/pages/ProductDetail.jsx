@@ -33,7 +33,7 @@ const Description = styled.p`
 `;
 const Price = styled.span`
   font-weight: 500;
-  font-size: 40px;
+  font-size: 30px;
 `;
 const FilterContainer = styled.div`
   width: 50%;
@@ -84,13 +84,13 @@ const Quantity = styled.span`
 `;
 const Button = styled.button`
   padding: 15px;
-
+  color: white;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 700;
   background-color: teal;
 
   &:hover {
-    opacity: 0.7;
+    opacity: 0.85;
   }
 `;
 const ProductDetail = () => {

@@ -9,6 +9,7 @@ const Container = styled.div`
     ),
     url("https://i.redd.it/5m2flzftc3e71.jpg")
       center;
+  background-size: center;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,9 +41,15 @@ const Button = styled.button`
   width: 40%;
   border: none;
   padding: 15px 20px;
+  font-weight: 700;
   background-color: teal;
   color: white;
   cursor: pointer;
+`;
+const Link = styled.a`
+  cursor: pointer;
+  margin: 5px 0;
+  font-size: 12px;
 `;
 
 const Register = () => {
@@ -61,7 +68,8 @@ const Register = () => {
             Lorem ipsum dolor sit amet consectetur
             adipisicing elit. Fugiat, numquam?
           </Agreement>
-          <Button>Register now</Button>
+          <Button>REGISTER NOW</Button>
+          <Link>ALREADY HAVE A ACCOUNT?</Link>
         </Form>
       </Wrapper>
     </Container>
