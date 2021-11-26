@@ -1,6 +1,6 @@
 import {
+  Add,
   AddCircleOutline,
-  RemoveCircleOutline,
 } from "@mui/icons-material";
 import styled from "styled-components";
 import Layout from "../components/layouts/Layout";
@@ -233,15 +233,11 @@ const Cart = () => {
                 </ProductDetail>
                 <PriceDetail>
                   <ProductQuantityContainer>
-                    <RemoveCircleOutline
-                      style={{ color: "red" }}
-                    />
+                    <Remove />
                     <ProductQuantity>
                       2
                     </ProductQuantity>
-                    <AddCircleOutline
-                      style={{ color: "teal" }}
-                    />
+                    <Add />
                     <ProductPrice>
                       $ 30
                     </ProductPrice>

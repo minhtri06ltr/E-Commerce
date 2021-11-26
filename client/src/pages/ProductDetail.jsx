@@ -1,9 +1,6 @@
 import styled from "styled-components";
 import Layout from "../components/layouts/Layout";
-import {
-  RemoveCircleOutline,
-  AddCircleOutline,
-} from "@mui/icons-material";
+import { Remove, Add } from "@mui/icons-material";
 import { mobile } from "../responsive";
 
 const Container = styled.div``;
@@ -162,13 +159,9 @@ const ProductDetail = () => {
             </FilterContainer>
             <AddContainer>
               <QuantityContainer>
-                <RemoveCircleOutline
-                  style={{ color: "red" }}
-                />
+                <Remove />
                 <Quantity>1</Quantity>
-                <AddCircleOutline
-                  style={{ color: "teal" }}
-                />
+                <Add />
               </QuantityContainer>
               <Button>ADD TO CART</Button>
             </AddContainer>
