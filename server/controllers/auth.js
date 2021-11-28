@@ -36,6 +36,7 @@ exports.login = async (req, res) => {
     const user = await User.findOne({
       username: req.body.username,
     });
+
     //check username
     !user &&
       res.status(401).json({

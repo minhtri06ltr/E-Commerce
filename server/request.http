@@ -11,7 +11,7 @@ POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
 {
-    "username":"admin",
+    "username":"lyminhtri",
     "password":"123123"
 }
 
@@ -40,4 +40,48 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTIxZTJmM
 
 ###
 GET  http://localhost:5000/api/users/stats
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTIxZTJmMmU4YWFmYWRjZTkzMDMzYiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODAxNDU2OCwiZXhwIjoxNjM4MjczNzY4fQ.vvmLPp0XiMjrJxr6ZxrylQR3wniuC29APXPnqQMOAfE
+
+###
+POST  http://localhost:5000/api/products/add
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTIxZTJmMmU4YWFmYWRjZTkzMDMzYiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODAxNDU2OCwiZXhwIjoxNjM4MjczNzY4fQ.vvmLPp0XiMjrJxr6ZxrylQR3wniuC29APXPnqQMOAfE
+
+{
+    "title":"T-Shirt nike",
+    "description":"t shirt is good clothes",
+    "img":"test",
+    "categories":["t shirt","women"],
+    "size":"S",
+    "color":"red",
+    "price":50
+}
+
+###
+GET  http://localhost:5000/api/products
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTIxZTJmMmU4YWFmYWRjZTkzMDMzYiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODAxNDU2OCwiZXhwIjoxNjM4MjczNzY4fQ.vvmLPp0XiMjrJxr6ZxrylQR3wniuC29APXPnqQMOAfE
+
+###
+POST   http://localhost:5000/api/orders/add
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTA1MjE4ZDI2ODhkZGFhY2FjODMwNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2MzgwNzIyMDgsImV4cCI6MTYzODMzMTQwOH0.bhxgQk4GdfTEH42t6IhAbfC-TixYOSSPE1Rm19Ids50
+
+{
+    "userId":"61a05218d2688ddaacac8304",
+    "products":[
+        {
+            "productId":"61a2eab9df63ca69f6276bd6",
+            "quantity":2
+        },
+        {
+            "productId":"61a2edd4781dfbcda6be6908",
+            "quantity":1
+        }
+    ],
+    "amount":50,
+    "address":"HCM"
+}
+
+###
+GET  http://localhost:5000/api/orders/income
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTIxZTJmMmU4YWFmYWRjZTkzMDMzYiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODAxNDU2OCwiZXhwIjoxNjM4MjczNzY4fQ.vvmLPp0XiMjrJxr6ZxrylQR3wniuC29APXPnqQMOAfE

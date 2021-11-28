@@ -1,5 +1,5 @@
 const User = require("../models/user");
-exports.userUpdateInfo = async (req, res) => {
+exports.updateUser = async (req, res) => {
   if (req.body.password) {
     req.body.password = CryptoJS.AES.encrypt(
       req.body.password,
@@ -73,11 +73,11 @@ exports.getUser = async (req, res) => {
 exports.getAllUsers = async (req, res) => {
   const query = req.query.new;
   try {
-    //if exits query get 5 newest user
+    //if exits query get 5 newest user if query = true
     const users = query
       ? await User.find()
           .sort({ _id: -1 })
-          .limit(1)
+          .limit(5)
       : await User.find(req.params.id);
 
     res.status(200).json({
