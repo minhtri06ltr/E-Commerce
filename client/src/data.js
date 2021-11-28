@@ -27,16 +27,19 @@ export const categories = [
     id: 0,
     img: "https://i.redd.it/5m2flzftc3e71.jpg",
     title: "HOSHIYOMI",
+    category: "women",
   },
   {
     id: 1,
     img: "https://i.redd.it/5m2flzftc3e71.jpg",
     title: "GEN 0",
+    category: "men",
   },
   {
     id: 2,
     img: "https://i.redd.it/5m2flzftc3e71.jpg",
     title: "COMET",
+    category: "coat",
   },
 ];
 

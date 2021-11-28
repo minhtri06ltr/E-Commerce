@@ -5,7 +5,7 @@ import {
 } from "@mui/icons-material";
 import { Badge } from "@mui/material";
 import { mobile } from "../../responsive";
-
+import { Link } from "react-router-dom";
 const Container = styled.div`
   height: 60px;
   ${mobile({ height: "50px" })}
@@ -85,15 +85,21 @@ const Navbar = () => {
           <Logo>HOLO.</Logo>
         </Center>
         <Right>
-          <MenuItem>REGISTER</MenuItem>
-          <MenuItem>LOGIN</MenuItem>
+          <Link to="/register">
+            <MenuItem>REGISTER</MenuItem>
+          </Link>
+          <Link to="/login">
+            <MenuItem>LOGIN</MenuItem>
+          </Link>
           <MenuItem>
-            <Badge
-              badgeContent={4}
-              color="primary"
-            >
-              <ShoppingCartOutlined />
-            </Badge>
+            <Link to="/cart">
+              <Badge
+                badgeContent={4}
+                color="primary"
+              >
+                <ShoppingCartOutlined />
+              </Badge>
+            </Link>
           </MenuItem>
         </Right>
       </Wrapper>

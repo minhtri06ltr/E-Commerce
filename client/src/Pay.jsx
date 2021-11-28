@@ -1,10 +1,12 @@
 import StripeCheckout from "react-stripe-checkout";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const KEY =
   "pk_test_51K0enCDzr6LNQ8Fc5SlrYCUSp2ORkjw2rLdlXP2j3UtWn2yz6BzSLa5i0fToYH7O6zyajt6291A8LMCJ1gsB9AQ100uMO2vlUq";
 
 const Pay = () => {
+  const navigate = useNavigate();
   const [stripeToken, setStripeToken] =
     useState(null);
   const onToken = (token) => {
@@ -22,12 +24,13 @@ const Pay = () => {
           },
         );
         console.log(response.data);
+        navigate("/success");
       } catch (error) {
         console.log(error);
       }
     };
     stripeToken && makeRequest();
-  }, [stripeToken]);
+  }, [stripeToken, navigate]);
   return (
     <StripeCheckout
       name="Hol Shop"

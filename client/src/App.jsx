@@ -8,17 +8,45 @@ import {
   BrowserRouter,
   Routes,
   Route,
+  Navigate,
 } from "react-router-dom";
 import Pay from "./Pay";
 import Success from "./Success";
 const App = () => {
+  const user = false;
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/pay" element={<Pay />} />
+        <Route path="/" element={<Home />} />
         <Route
-          path="/success"
-          element={<Success />}
+          path="/products/:category"
+          element={<ProductList />}
+        />
+        <Route
+          path="/products/:category"
+          element={<ProductList />}
+        />
+        <Route
+          path="/product/:id"
+          element={<ProductDetail />}
+        />
+
+        <Route path="/cart" element={<Cart />} />
+        <Route
+          path="/login"
+          element={
+            user ? <Navigate to="/" /> : <Login />
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            user ? (
+              <Navigate to="/" />
+            ) : (
+              <Register />
+            )
+          }
         />
       </Routes>
     </BrowserRouter>
