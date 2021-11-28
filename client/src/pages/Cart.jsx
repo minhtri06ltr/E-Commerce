@@ -1,7 +1,4 @@
-import {
-  Add,
-  AddCircleOutline,
-} from "@mui/icons-material";
+import { Add, Remove } from "@mui/icons-material";
 import styled from "styled-components";
 import Layout from "../components/layouts/Layout";
 import { mobile } from "../responsive";
@@ -194,13 +191,13 @@ const Cart = () => {
                 </ProductDetail>
                 <PriceDetail>
                   <ProductQuantityContainer>
-                    <RemoveCircleOutline
+                    <Remove
                       style={{ color: "red" }}
                     />
                     <ProductQuantity>
                       2
                     </ProductQuantity>
-                    <AddCircleOutline
+                    <Add
                       style={{ color: "teal" }}
                     />
                     <ProductPrice>
