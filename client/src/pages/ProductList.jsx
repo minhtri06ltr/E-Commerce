@@ -1,3 +1,5 @@
+import { useLocation } from "react-router";
+import { useState } from "react";
 import styled from "styled-components";
 import Layout from "../components/layouts/Layout";
 import Products from "../components/Products";
@@ -38,16 +40,37 @@ const Option = styled.option`
   text-align: center;
 `;
 const ProductList = () => {
+  const location = useLocation();
+  //get category from url
+  const category =
+    location.pathname.split("/")[2];
+  //state
+  const [filters, setFilters] = useState({});
+
+  const [sort, setSort] = useState("newest");
+  //event function
+  const handleFilters = (e) => {
+    const value = e.target.value;
+    //get filter value
+    setFilters({
+      ...filters,
+      [e.target.name]: value,
+    });
+  };
   return (
     <Container>
       <Layout>
-        <Title>CPU</Title>
+        <Title>{category}</Title>
         <FilterContainer>
           <Filter>
             <FilterText>
               Filter Products
             </FilterText>
-            <Select defaultValue="chooseColor">
+            <Select
+              defaultValue="chooseColor"
+              onChange={handleFilters}
+              name="color"
+            >
               <Option
                 disabled
                 value="chooseColor"
@@ -60,7 +83,11 @@ const ProductList = () => {
               <Option>Yellow</Option>
               <Option>Green</Option>
             </Select>
-            <Select defaultValue="chooseSize">
+            <Select
+              defaultValue="chooseSize"
+              onChange={handleFilters}
+              name="size"
+            >
               <Option disabled value="chooseSize">
                 Size
               </Option>
@@ -73,16 +100,32 @@ const ProductList = () => {
           </Filter>
           <Filter>
             <FilterText>Sort Products</FilterText>
-            <Select defaultValue="chooseSortType">
-              <Option value="chooseSortType">
+            <Select
+              defaultValue="chooseType"
+              onChange={(e) =>
+                setSort(e.target.value)
+              }
+            >
+              <Option disabled value="chooseType">
+                Choose sort type
+              </Option>
+              <Option value="newest">
                 Newest
               </Option>
-              <Option>Price (asc)</Option>
-              <Option>Price (desc)</Option>
+              <Option value="asc">
+                Price (asc)
+              </Option>
+              <Option value="desc">
+                Price (desc)
+              </Option>
             </Select>
           </Filter>
         </FilterContainer>
-        <Products />
+        <Products
+          category={category}
+          filters={filters}
+          sort={sort}
+        />
       </Layout>
     </Container>
   );

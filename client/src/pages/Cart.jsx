@@ -1,8 +1,13 @@
 import { Add, Remove } from "@mui/icons-material";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Layout from "../components/layouts/Layout";
 import { mobile } from "../responsive";
-
+import StripeCheckout from "react-stripe-checkout";
+import { useEffect, useState } from "react";
+import { userRequest } from "../helper/requestMethods";
+import { useNavigate } from "react-router-dom";
+const KEY = process.env.STRIPE_KEY;
 const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 20px;
@@ -151,6 +156,35 @@ const Button = styled.button`
   font-weight: 600;
 `;
 const Cart = () => {
+  const cart = useSelector((state) => state.cart);
+  const navigate = useNavigate();
+  //state
+  const [stripeToken, setStripeToken] =
+    useState(null);
+  //effect
+  useEffect(() => {
+    const makePaymentRequest = async () => {
+      try {
+        const response = await userRequest.post(
+          "/checkout/payment",
+          {
+            tokenId: stripeToken.id,
+            amount: cart.total * 100,
+          },
+        );
+        navigate("/success", {
+          data: response.data.stripeResponse,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    stripeToken && makePaymentRequest();
+  }, [stripeToken, cart.total, navigate]);
+  //function
+  const onToken = (token) => {
+    setStripeToken(token);
+  };
   return (
     <Container>
       <Layout>
@@ -170,77 +204,51 @@ const Cart = () => {
           </Top>
           <Bottom>
             <Info>
-              <ProductItem>
-                <ProductDetail>
-                  <Image src="https://i.redd.it/5m2flzftc3e71.jpg" />
-                  <Details>
-                    <ProductName>
-                      <b>Product:</b>
-                      SUI CHAN
-                    </ProductName>
-                    <ProductId>
-                      <b>ID:</b>
-                      42457
-                    </ProductId>
-                    <ProductColor color="black" />
-                    <ProductSize>
-                      <b>Size:</b>
-                      37.5
-                    </ProductSize>
-                  </Details>
-                </ProductDetail>
-                <PriceDetail>
-                  <ProductQuantityContainer>
-                    <Remove
-                      style={{ color: "red" }}
-                    />
-                    <ProductQuantity>
-                      2
-                    </ProductQuantity>
-                    <Add
-                      style={{ color: "teal" }}
-                    />
-                    <ProductPrice>
-                      $ 30
-                    </ProductPrice>
-                  </ProductQuantityContainer>
-                </PriceDetail>
-              </ProductItem>
-
-              <Hr />
-
-              <ProductItem>
-                <ProductDetail>
-                  <Image src="https://i.redd.it/5m2flzftc3e71.jpg" />
-                  <Details>
-                    <ProductName>
-                      <b>Product:</b>
-                      SUI CHAN
-                    </ProductName>
-                    <ProductId>
-                      <b>ID:</b>
-                      42457
-                    </ProductId>
-                    <ProductColor color="black" />
-                    <ProductSize>
-                      <b>Size:</b>
-                      37.5
-                    </ProductSize>
-                  </Details>
-                </ProductDetail>
-                <PriceDetail>
-                  <ProductQuantityContainer>
-                    <Remove />
-                    <ProductQuantity>
-                      2
-                    </ProductQuantity>
-                    <Add />
-                    <ProductPrice>
-                      $ 30
-                    </ProductPrice>
-                  </ProductQuantityContainer>
-                </PriceDetail>
-              </ProductItem>
+              {cart.products.map(
+                (product, index) => (
+                  <>
+                    <ProductItem key={index}>
+                      <ProductDetail>
+                        <Image
+                          src={product.img}
+                        />
+                        <Details>
+                          <ProductName>
+                            <b>Product: </b>
+                            {product.title}
+                          </ProductName>
+                          <ProductId>
+                            <b>ID: </b>
+                            {product._id}
+                          </ProductId>
+                          <ProductColor
+                            color={product.color}
+                          />
+                          <ProductSize>
+                            <b>Size: </b>
+                            {product.size}
+                          </ProductSize>
+                        </Details>
+                      </ProductDetail>
+                      <PriceDetail>
+                        <ProductQuantityContainer>
+                          <Remove />
+                          <ProductQuantity>
+                            {product.quantity}
+                          </ProductQuantity>
+                          <Add />
+                          <ProductPrice>
+                            ${" "}
+                            {product.price *
+                              product.quantity}
+                          </ProductPrice>
+                        </ProductQuantityContainer>
+                      </PriceDetail>
+                    </ProductItem>
+                    <Hr />
+                  </>
+                ),
+              )}
             </Info>
             <Summary>
               <SummaryTitle>
@@ -251,7 +259,7 @@ const Cart = () => {
                   Subtotal
                 </SummaryItemText>
                 <SummaryItemPrice>
-                  $ 80
+                  $ {cart.total}
                 </SummaryItemPrice>
               </SummaryItem>
               <SummaryItem>
@@ -275,10 +283,23 @@ const Cart = () => {
                   Total
                 </SummaryItemText>
                 <SummaryItemPrice>
-                  $ 80
+                  $ {cart.total}
                 </SummaryItemPrice>
               </SummaryItem>
-              <Button>CHECKOUT NOW</Button>
+              <StripeCheckout
+                name="Hol Shop"
+                //logo
+                image="https://i.redd.it/5m2flzftc3e71.jpg"
+                billingAddress
+                shippingAddress
+                description={`Your total is $${cart.total}`}
+                //stripe use percent
+                amount={cart.total * 100}
+                token={onToken}
+                stripeKey={KEY}
+              >
+                <Button>CHECKOUT NOW</Button>
+              </StripeCheckout>
             </Summary>
           </Bottom>
         </Wrapper>

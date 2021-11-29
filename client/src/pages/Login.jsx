@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/apiRequest";
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -54,14 +57,37 @@ const Link = styled.a`
 `;
 
 const Login = () => {
+  const dispatch = useDispatch();
+  //state
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  //event
+  const userLogin = (e) => {
+    //prevent refesh page
+    e.preventDefault();
+    login(dispatch, { username, password });
+  };
   return (
     <Container>
       <Wrapper>
         <Title>LOGIN TO YOUR ACCOUNT</Title>
         <Form>
-          <Input placeholder="Email" />
-          <Input placeholder="User name" />
-          <Button>LOGIN NOW</Button>
+          <Input
+            placeholder="Username"
+            onChange={(e) =>
+              setUsername(e.target.value)
+            }
+          />
+          <Input
+            type="password"
+            placeholder="Password"
+            onChange={(e) =>
+              setPassword(e.target.value)
+            }
+          />
+          <Button onClick={userLogin}>
+            LOGIN NOW
+          </Button>
           <Link>FORGOT YOUR PASSWORD?</Link>
           <Link>FIRST TIME TO HOLO?</Link>
         </Form>
