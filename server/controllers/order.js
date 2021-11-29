@@ -103,6 +103,7 @@ exports.getAllOrders = async (req, res) => {
 };
 
 exports.getOrderStats = async (req, res) => {
+  const productId = req.query.pid;
   const date = new Date();
   //example: if tody is month = 10 => last month = 9 => previous month = 8
   const lastMonth = new Date(
@@ -120,6 +121,12 @@ exports.getOrderStats = async (req, res) => {
         $match: {
           //last 2 month from today
           createdAt: { $gte: previousMonth },
+          //if there are pid query create new condition
+          ...(productId && {
+            products: {
+              $elemMatch: { productId },
+            },
+          }),
         },
       },
 

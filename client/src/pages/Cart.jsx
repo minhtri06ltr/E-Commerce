@@ -7,7 +7,7 @@ import StripeCheckout from "react-stripe-checkout";
 import { useEffect, useState } from "react";
 import { userRequest } from "../helper/requestMethods";
 import { useNavigate } from "react-router-dom";
-const KEY = process.env.STRIPE_KEY;
+
 const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 20px;
@@ -156,6 +156,9 @@ const Button = styled.button`
   font-weight: 600;
 `;
 const Cart = () => {
+  const KEY =
+    "pk_test_51K0enCDzr6LNQ8Fc5SlrYCUSp2ORkjw2rLdlXP2j3UtWn2yz6BzSLa5i0fToYH7O6zyajt6291A8LMCJ1gsB9AQ100uMO2vlUq";
+  console.log(KEY);
   const cart = useSelector((state) => state.cart);
   const navigate = useNavigate();
   //state
@@ -173,7 +176,9 @@ const Cart = () => {
           },
         );
         navigate("/success", {
-          data: response.data.stripeResponse,
+          stripeData:
+            response.data.stripeResponse,
+          products: cart,
         });
       } catch (error) {
         console.log(error);
@@ -206,8 +211,8 @@ const Cart = () => {
             <Info>
               {cart.products.map(
                 (product, index) => (
-                  <>
-                    <ProductItem key={index}>
+                  <div key={index}>
+                    <ProductItem>
                       <ProductDetail>
                         <Image
                           src={product.img}
@@ -246,7 +251,7 @@ const Cart = () => {
                       </PriceDetail>
                     </ProductItem>
                     <Hr />
-                  </>
+                  </div>
                 ),
               )}
             </Info>

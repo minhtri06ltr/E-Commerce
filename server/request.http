@@ -35,7 +35,7 @@ Content-Type: application/json
 }
 
 ###
-GET  http://localhost:5000/api/users
+GET  http://localhost:5000/api/users?new=true
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTIxZTJmMmU4YWFmYWRjZTkzMDMzYiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODAxNDU2OCwiZXhwIjoxNjM4MjczNzY4fQ.vvmLPp0XiMjrJxr6ZxrylQR3wniuC29APXPnqQMOAfE
 
 ###

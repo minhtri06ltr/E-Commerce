@@ -11,10 +11,10 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import Pay from "./Pay";
-import Success from "./Success";
+
+import { useSelector } from "react-redux";
 const App = () => {
-  const user = false;
+  const user = useSelector((state) => state.user);
   return (
     <BrowserRouter>
       <Routes>
@@ -39,13 +39,17 @@ const App = () => {
         <Route
           path="/login"
           element={
-            user ? <Navigate to="/" /> : <Login />
+            user.currentUser ? (
+              <Navigate to="/" />
+            ) : (
+              <Login />
+            )
           }
         />
         <Route
           path="/register"
           element={
-            user ? (
+            user.currentUser ? (
               <Navigate to="/" />
             ) : (
               <Register />

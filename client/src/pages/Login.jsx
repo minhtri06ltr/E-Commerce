@@ -1,7 +1,10 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import {
+  useDispatch,
+  useSelector,
+} from "react-redux";
 import { login } from "../redux/apiRequest";
 const Container = styled.div`
   width: 100vw;
@@ -55,9 +58,14 @@ const Link = styled.a`
   margin: 5px auto;
   font-size: 12px;
 `;
+const Error = styled.span`
+  color: red;
+  text-align: center;
+`;
 
 const Login = () => {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
   //state
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -88,6 +96,9 @@ const Login = () => {
           <Button onClick={userLogin}>
             LOGIN NOW
           </Button>
+          {user.error && (
+            <Error>Something went wrong...</Error>
+          )}
           <Link>FORGOT YOUR PASSWORD?</Link>
           <Link>FIRST TIME TO HOLO?</Link>
         </Form>
