@@ -5,14 +5,18 @@ const apiUrl =
     ? "http://localhost:5000/api"
     : "https://arcane-ravine-81598.herokuapp.com/api";
 
-const token = JSON.parse(
-  JSON.parse(localStorage.getItem("persist:root"))
-    .user,
-).currentUser.accessToken;
+const user = JSON.parse(
+  localStorage.getItem("persist:root"),
+)?.user;
+const currentUser =
+  user && JSON.parse(user).currentUser;
+const token = currentUser?.accessToken;
 export const publicRequest = axios.create({
   baseURL: apiUrl,
 });
 export const userRequest = axios.create({
   baseURL: apiUrl,
-  header: { token: `Bearer ${token}` },
+  headers: {
+    Authorization: token ? `Bearer ${token}` : "",
+  },
 });

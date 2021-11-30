@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   useDispatch,
   useSelector,
@@ -53,7 +54,7 @@ const Button = styled.button`
   margin: auto;
   margin-bottom: 10px;
 `;
-const Link = styled.a`
+const Redirect = styled.span`
   cursor: pointer;
   margin: 5px auto;
   font-size: 12px;
@@ -99,8 +100,12 @@ const Login = () => {
           {user.error && (
             <Error>Something went wrong...</Error>
           )}
-          <Link>FORGOT YOUR PASSWORD?</Link>
-          <Link>FIRST TIME TO HOLO?</Link>
+
+          <Link to="/register">
+            <Redirect>
+              FIRST TIME TO HOLO?
+            </Redirect>
+          </Link>
         </Form>
       </Wrapper>
     </Container>

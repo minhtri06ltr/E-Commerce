@@ -3,6 +3,23 @@ const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 //REGISTER
 exports.register = async (req, res) => {
+  const userDB = await User.findOne({
+    username: req.body.username,
+  });
+  if (userDB)
+    return res.status(400).json({
+      success: false,
+      message: "User name already taken",
+    });
+  const emailDB = await User.findOne({
+    email: req.body.email,
+  });
+  if (emailDB)
+    return res.status(400).json({
+      success: false,
+      message: "Email already taken",
+    });
+
   const newUser = new User({
     username: req.body.username,
     email: req.body.email,
@@ -15,10 +32,22 @@ exports.register = async (req, res) => {
 
   try {
     const savedUser = await newUser.save();
+    const accessToken = jwt.sign(
+      {
+        //store in token
+        id: savedUser._id,
+        isAdmin: savedUser.isAdmin,
+      },
+      process.env.JWT_KEY,
+      { expiresIn: "3d" },
+    );
+    const { password, ...others } =
+      savedUser._doc;
     res.status(201).json({
       success: true,
       message: "Register new user successfull",
-      savedUser,
+      ...others,
+      accessToken,
     });
   } catch (error) {
     console.log(error);

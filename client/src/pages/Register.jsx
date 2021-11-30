@@ -1,5 +1,13 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import {
+  useDispatch,
+  useSelector,
+} from "react-redux";
+import { register } from "../redux/apiRequest";
+import validator from "validator";
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -54,31 +62,97 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
 `;
-const Link = styled.a`
+const Redirect = styled.span`
   cursor: pointer;
   margin: 15px 0;
   font-size: 12px;
 `;
-
+const Error = styled.span`
+  color: red;
+  text-align: center;
+`;
 const Register = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  const [errorMessage, setErrorMessage] =
+    useState("Something went wrong");
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] =
+    useState("");
+
+  const userRegister = (e) => {
+    //prevent refesh page
+    e.preventDefault();
+    if (!validator.isEmail(email)) {
+      setErrorMessage("Invalid email");
+      return;
+    } else if (password.length < 6) {
+      setErrorMessage(
+        "Password at least 6 characters long",
+      );
+      return;
+    } else if (confirmPassword !== password) {
+      setErrorMessage(
+        "Password and confirm password incorrect",
+      );
+      return;
+    } else {
+      register(dispatch, {
+        email,
+        username,
+        password,
+      });
+    }
+  };
   return (
     <Container>
       <Wrapper>
         <Title>CREATE YOUR ACCOUNT</Title>
         <Form>
-          <Input placeholder="First name" />
-          <Input placeholder="Last name" />
-          <Input placeholder="Email" />
-          <Input placeholder="User name" />
-          <Input placeholder="Password" />
-          <Input placeholder="Confirm password" />
+          <Input
+            placeholder="Email"
+            onChange={(e) =>
+              setEmail(e.target.value)
+            }
+          />
+          <Input
+            placeholder="User name"
+            onChange={(e) =>
+              setUsername(e.target.value)
+            }
+          />
+          <Input
+            placeholder="Password"
+            type="password"
+            onChange={(e) =>
+              setPassword(e.target.value)
+            }
+          />
+          <Input
+            placeholder="Confirm password"
+            type="password"
+            onChange={(e) =>
+              setConfirmPassword(e.target.value)
+            }
+          />
           <Agreement>
             Lorem ipsum dolor sit amet consectetur
             adipisicing elit. Fugiat, numquam?
           </Agreement>
           <WrapButtonAndLink>
-            <Button>REGISTER NOW</Button>
-            <Link>ALREADY HAVE A ACCOUNT?</Link>
+            <Button onClick={userRegister}>
+              REGISTER NOW
+            </Button>
+            {user.error && (
+              <Error>{errorMessage}</Error>
+            )}
+            <Link to="/login">
+              <Redirect>
+                ALREADY HAVE A ACCOUNT?
+              </Redirect>
+            </Link>
           </WrapButtonAndLink>
         </Form>
       </Wrapper>

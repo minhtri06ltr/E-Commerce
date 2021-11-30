@@ -6,7 +6,11 @@ import {
 import { Badge } from "@mui/material";
 import { mobile } from "../../responsive";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import {
+  useDispatch,
+  useSelector,
+} from "react-redux";
+import { logout } from "../../redux/apiRequest";
 const Container = styled.div`
   height: 60px;
   ${mobile({ height: "50px" })}
@@ -65,9 +69,41 @@ const MenuItem = styled.div`
     marginLeft: "10px",
   })}
 `;
+
 //render component
 const Navbar = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
+  const userLogout = () => {
+    console.log("2");
+    logout(dispatch);
+  };
+  const login = () => {
+    return (
+      <>
+        <MenuItem>
+          WELCOME{" "}
+          {user.currentUser.username.toUpperCase()}
+        </MenuItem>
+        <MenuItem onClick={userLogout}>
+          LOGOUT
+        </MenuItem>
+      </>
+    );
+  };
+  const nonLogin = () => {
+    return (
+      <>
+        <Link to="/register">
+          <MenuItem>REGISTER</MenuItem>
+        </Link>
+        <Link to="/login">
+          <MenuItem>LOGIN</MenuItem>
+        </Link>
+      </>
+    );
+  };
   return (
     <Container>
       <Wrapper>
@@ -89,12 +125,9 @@ const Navbar = () => {
           </Link>
         </Center>
         <Right>
-          <Link to="/register">
-            <MenuItem>REGISTER</MenuItem>
-          </Link>
-          <Link to="/login">
-            <MenuItem>LOGIN</MenuItem>
-          </Link>
+          {user.currentUser
+            ? login()
+            : nonLogin()}
           <MenuItem>
             <Link to="/cart">
               <Badge

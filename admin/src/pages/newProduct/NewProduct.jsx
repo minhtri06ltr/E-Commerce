@@ -20,7 +20,7 @@ export default function NewProduct() {
     setInputs((prev) => {
       return {
         ...prev,
-        [e.target.name]: e.target.name,
+        [e.target.name]: e.target.value,
       };
     });
   };
@@ -81,7 +81,7 @@ export default function NewProduct() {
             img: downloadURL,
             categories: categories,
           };
-          addProduct(product, dispatch);
+          addProduct(dispatch, product);
         });
       },
     );

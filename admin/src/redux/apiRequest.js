@@ -21,6 +21,10 @@ import {
   updateProductRequest,
   updateProductSuccess,
 } from "./productRedux";
+import {
+  getAllUsersRequest,
+  getAllUsersSuccess,
+} from "./userListRedux";
 export const login = async (dispatch, user) => {
   dispatch(loginRequest());
   try {
@@ -93,7 +97,7 @@ export const addProduct = async (
   try {
     const response = await userRequest.post(
       `/products/add`,
-      { product },
+      product,
     );
     dispatch(
       addProductSuccess(
@@ -102,5 +106,18 @@ export const addProduct = async (
     );
   } catch (error) {
     dispatch(addProductFailure());
+  }
+};
+export const getAllUsers = async (dispatch) => {
+  dispatch(getAllUsersRequest());
+  try {
+    const response = await userRequest.get(
+      "/users",
+    );
+    dispatch(
+      getAllUsersSuccess(response.data.users),
+    );
+  } catch (error) {
+    dispatch(getAllProductsFailure());
   }
 };
