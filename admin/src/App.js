@@ -15,6 +15,7 @@ import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
 import Login from "./pages/login/Login";
 import { useSelector } from "react-redux";
+import OrderList from "./pages/orderList/OrderList";
 import { Redirect } from "react-router-dom";
 function App() {
   const user = useSelector((state) => state.user);
@@ -55,6 +56,9 @@ function App() {
               </Route>
               <Route path="/newproduct">
                 <NewProduct />
+              </Route>
+              <Route path="/orders">
+                <OrderList />
               </Route>
             </div>
           </>

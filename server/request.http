@@ -83,7 +83,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTA1MjE4Z
 }
 
 ###
-GET  http://localhost:5000/api/orders/income
+GET  http://localhost:5000/api/orders/income?pid=61a2edd4781dfbcda6be6908
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTIxZTJmMmU4YWFmYWRjZTkzMDMzYiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODMyMTI4MCwiZXhwIjoxNjM4NTgwNDgwfQ.LhKLebCGgcEDfNA1y9LiPOIjfZC_4dedhJV2WNeD5xQ
 
 ###
@@ -116,3 +116,7 @@ Content-Type: application/json
     "username":"vana123",
     "password":"alwayssmile"
 }
+
+###
+GET  http://localhost:5000/api/orders
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTIxZTJmMmU4YWFmYWRjZTkzMDMzYiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODMyMTI4MCwiZXhwIjoxNjM4NTgwNDgwfQ.LhKLebCGgcEDfNA1y9LiPOIjfZC_4dedhJV2WNeD5xQ

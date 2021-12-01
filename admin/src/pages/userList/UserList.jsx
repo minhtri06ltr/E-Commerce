@@ -5,15 +5,18 @@ import {
   GridToolbarContainer,
 } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
-import { userRows } from "../../dummyData";
+
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { format } from "timeago.js";
 import { useEffect } from "react";
 import {
   useDispatch,
   useSelector,
 } from "react-redux";
-import { getAllUsers } from "../../redux/apiRequest";
+import {
+  getAllUsers,
+  deleteUser,
+} from "../../redux/apiRequest";
 
 function MyExportButton() {
   return (
@@ -23,7 +26,6 @@ function MyExportButton() {
   );
 }
 export default function UserList() {
-  const [data, setData] = useState(userRows);
   const userList = useSelector(
     (state) => state.userList.users,
   );
@@ -32,18 +34,19 @@ export default function UserList() {
     getAllUsers(dispatch);
   }, [dispatch]);
   const handleDelete = (id) => {
-    setData(
-      data.filter((item) => item.id !== id),
-    );
+    deleteUser(dispatch, id);
   };
-  console.log(userList);
 
   const columns = [
-    { field: "_id", headerName: "ID", width: 90 },
+    {
+      field: "_id",
+      headerName: "ID",
+      width: 200,
+    },
     {
       field: "username",
       headerName: "User",
-      width: 200,
+      width: 90,
       renderCell: (params) => {
         return (
           <div className="userListUser">
@@ -60,7 +63,12 @@ export default function UserList() {
     {
       field: "email",
       headerName: "Email",
-      width: 200,
+      width: 230,
+    },
+    {
+      field: "createdAt",
+      headerName: "Created",
+      width: 105,
     },
     // {
     //   field: "status",
@@ -95,7 +103,9 @@ export default function UserList() {
       },
     },
   ];
-
+  userList.map((user) => {
+    user.format = format(user.createdAt);
+  });
   return (
     <div className="userList">
       <DataGrid

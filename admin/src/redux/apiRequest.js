@@ -31,7 +31,15 @@ import {
   updateUserRequest,
   updateUserSuccess,
   updateUserFailure,
+  deleteUserRequest,
+  deleteUserSuccess,
+  deleteUserFailure,
 } from "./userListRedux";
+import {
+  getAllOrdersSuccess,
+  getAllOrdersFailure,
+  getAllOrdersRequest,
+} from "./orderRedux";
 export const login = async (dispatch, user) => {
   dispatch(loginRequest());
   try {
@@ -164,5 +172,34 @@ export const updateUser = async (
     );
   } catch (error) {
     dispatch(updateUserFailure());
+  }
+};
+
+export const deleteUser = async (
+  dispatch,
+  id,
+) => {
+  dispatch(deleteUserRequest());
+  try {
+    const response = await userRequest.delete(
+      `/users/${id}`,
+    );
+    dispatch(deleteUserSuccess(id));
+  } catch (error) {
+    dispatch(deleteUserFailure());
+  }
+};
+
+export const getAllOrders = async (dispatch) => {
+  dispatch(getAllOrdersRequest());
+  try {
+    const response = await userRequest.get(
+      `/orders`,
+    );
+    dispatch(
+      getAllOrdersSuccess(response.data.orders),
+    );
+  } catch (error) {
+    dispatch(getAllOrdersFailure());
   }
 };

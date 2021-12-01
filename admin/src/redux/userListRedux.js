@@ -19,23 +19,23 @@ const userListSlice = createSlice({
       state.isFetching = true;
       state.error = true;
     },
-    // deleteProductRequest: (state) => {
-    //   state.isFetching = true;
-    // },
-    // deleteProductSuccess: (state, action) => {
-    //   state.isFetching = false;
-    //   //index - quantity delete
-    //   state.products.splice(
-    //     state.products.findIndex(
-    //       (item) => item._id === action.payload,
-    //     ),
-    //     1,
-    //   );
-    // },
-    // deleteProductFailure: (state) => {
-    //   state.isFetching = true;
-    //   state.error = true;
-    // },
+    deleteUserRequest: (state) => {
+      state.isFetching = true;
+    },
+    deleteUserSuccess: (state, action) => {
+      state.isFetching = false;
+      //index - quantity delete
+      state.products.splice(
+        state.products.findIndex(
+          (item) => item._id === action.payload,
+        ),
+        1,
+      );
+    },
+    deleteUserFailure: (state) => {
+      state.isFetching = true;
+      state.error = true;
+    },
     updateUserRequest: (state) => {
       state.isFetching = true;
     },
@@ -78,5 +78,8 @@ export const {
   updateUserRequest,
   updateUserSuccess,
   updateUserFailure,
+  deleteUserRequest,
+  deleteUserSuccess,
+  deleteUserFailure,
 } = userListSlice.actions;
 export default userListSlice.reducer;

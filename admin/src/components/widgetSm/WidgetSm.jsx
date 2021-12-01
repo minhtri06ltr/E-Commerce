@@ -1,6 +1,7 @@
 import "./widgetSm.css";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { Visibility } from "@material-ui/icons";
+import { format } from "timeago.js";
 import { userRequest } from "../../helper/requestMethods";
 export default function WidgetSm() {
   const [users, setUsers] = useState([]);
@@ -21,7 +22,7 @@ export default function WidgetSm() {
   return (
     <div className="widgetSm">
       <span className="widgetSmTitle">
-        New User Members
+        New Members
       </span>
       <ul className="widgetSmList">
         {users.map((user, index) => (
@@ -49,6 +50,12 @@ export default function WidgetSm() {
                 className="widgetSmUserTitle"
               >
                 {user.email}
+              </span>
+              <span
+                style={{ textAlign: "center" }}
+                className="widgetSmUserTitle"
+              >
+                {format(user.createdAt)}
               </span>
             </div>
             <button className="widgetSmButton">

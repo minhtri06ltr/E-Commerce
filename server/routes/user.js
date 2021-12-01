@@ -20,7 +20,7 @@ router.put(
 //anyone can update user - required user id
 router.delete(
   "/:id",
-  verifyTokenAndAuthentization,
+  verifyTokenAndAdmin,
   deleteUser,
 );
 //only admin can get user - required user id

@@ -238,11 +238,9 @@ export default function Product() {
             </div>
             <div className="productInfoItem">
               <span className="productInfoKey">
-                sales:
+                Sales:
               </span>
-              <span className="productInfoValue">
-                5123
-              </span>
+              <span className="productInfoValue"></span>
             </div>
 
             <div className="productInfoItem">
@@ -250,7 +248,9 @@ export default function Product() {
                 In Stock:
               </span>
               <span className="productInfoValue">
-                {product.inStock.toString()}
+                {product.inStock
+                  .toString()
+                  .toUpperCase()}
               </span>
             </div>
           </div>
