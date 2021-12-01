@@ -16,6 +16,8 @@ export default function NewProduct() {
   const [categories, setCategories] = useState(
     [],
   );
+  const [sizes, setSizes] = useState([]);
+  const [colors, setColors] = useState([]);
   const handleChange = (e) => {
     setInputs((prev) => {
       return {
@@ -26,6 +28,12 @@ export default function NewProduct() {
   };
   const handleCategories = (e) => {
     setCategories(e.target.value.split(","));
+  };
+  const handleSizes = (e) => {
+    setSizes(e.target.value.split(","));
+  };
+  const handleColors = (e) => {
+    setColors(e.target.value.split(","));
   };
   const handleClick = (e) => {
     e.preventDefault();
@@ -80,6 +88,8 @@ export default function NewProduct() {
             ...inputs,
             img: downloadURL,
             categories: categories,
+            color: colors,
+            size: sizes,
           };
           addProduct(dispatch, product);
         });
@@ -135,6 +145,22 @@ export default function NewProduct() {
             type="text"
             placeholder="Product categories"
             onChange={handleCategories}
+          />
+        </div>
+        <div className="addProductItem">
+          <label>Sizes</label>
+          <input
+            type="text"
+            placeholder="Product sizes"
+            onChange={handleSizes}
+          />
+        </div>
+        <div className="addProductItem">
+          <label>Colors</label>
+          <input
+            type="text"
+            placeholder="Product colors"
+            onChange={handleColors}
           />
         </div>
         <div className="addProductItem">

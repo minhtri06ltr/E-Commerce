@@ -46,7 +46,12 @@ export default function Product() {
     price: product.price,
     inStock: product.inStock,
   });
-
+  const [sizes, setSizes] = useState(
+    product.size,
+  );
+  const [colors, setColors] = useState(
+    product.color,
+  );
   console.log(inputs);
   const [categories, setCategories] = useState(
     product.categories,
@@ -109,20 +114,37 @@ export default function Product() {
   const handleCategories = (e) => {
     setCategories(e.target.value.split(","));
   };
-
+  const handleSizes = (e) => {
+    setSizes(e.target.value.split(","));
+  };
+  const handleColors = (e) => {
+    setColors(e.target.value.split(","));
+  };
   const handleClick = (e) => {
     e.preventDefault();
-    if (file) {
-      //set unique to filename
-      const fileName =
-        new Date().getTime() + file.name;
+
+    if (!file) {
+      const newProduct = {
+        ...inputs,
+        color: colors,
+        size: sizes,
+        categories: categories,
+      };
+      updateProduct(
+        dispatch,
+        newProduct,
+        product._id,
+      );
+    } else {
       const storage = getStorage(app);
-      const storageRef = ref(storage, fileName);
+      const storageRef = ref(
+        storage,
+        product.img,
+      );
       const uploadTask = uploadBytesResumable(
         storageRef,
         file,
       );
-
       // Register three observers:
       // 1. 'state_changed' observer, called any time the state changes
       // 2. Error observer, called on failure
@@ -159,28 +181,20 @@ export default function Product() {
           getDownloadURL(
             uploadTask.snapshot.ref,
           ).then((downloadURL) => {
-            const updateProductData = {
+            const newProduct = {
               ...inputs,
               img: downloadURL,
               categories: categories,
+              color: colors,
+              size: sizes,
             };
             updateProduct(
               dispatch,
-              updateProductData,
+              newProduct,
               product._id,
             );
           });
         },
-      );
-    } else {
-      const updateProductData = {
-        ...inputs,
-        categories: categories,
-      };
-      updateProduct(
-        dispatch,
-        updateProductData,
-        product._id,
       );
     }
   };
@@ -259,14 +273,27 @@ export default function Product() {
               name="description"
               value={inputs.description}
             />
+            <label>Product Categories</label>
             <input
               type="text"
-              value={product.categories}
+              value={categories}
               onChange={handleCategories}
+            />
+            <label>Product Sizes</label>
+            <input
+              type="text"
+              value={sizes}
+              onChange={handleSizes}
+            />
+            <label>Product Colors</label>
+            <input
+              type="text"
+              value={colors}
+              onChange={handleColors}
             />
             <label>Product Price</label>
             <input
-              type="text"
+              type="number"
               value={inputs.price}
               onChange={handleChange}
               name="price"
@@ -297,8 +324,15 @@ export default function Product() {
                 id="file"
                 onChange={(e) => {
                   setFile(e.target.files[0]);
-                  setReview(e.target.files[0]);
-                  console.log(e.target.files[0]);
+                  const [previewFile] =
+                    e.target.files;
+                  if (previewFile) {
+                    setReview(
+                      URL.createObjectURL(
+                        previewFile,
+                      ),
+                    );
+                  }
                 }}
                 style={{ display: "none" }}
               />

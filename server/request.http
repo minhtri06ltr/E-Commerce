@@ -85,3 +85,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTA1MjE4Z
 ###
 GET  http://localhost:5000/api/orders/income
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTIxZTJmMmU4YWFmYWRjZTkzMDMzYiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODAxNDU2OCwiZXhwIjoxNjM4MjczNzY4fQ.vvmLPp0XiMjrJxr6ZxrylQR3wniuC29APXPnqQMOAfE
+
+###
+PUT  http://localhost:5000/api/products/61a3439552c4aeb5f94fbc88
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTIxZTJmMmU4YWFmYWRjZTkzMDMzYiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODAxNDU2OCwiZXhwIjoxNjM4MjczNzY4fQ.vvmLPp0XiMjrJxr6ZxrylQR3wniuC29APXPnqQMOAfE
+
+{
+    "price":66
+}

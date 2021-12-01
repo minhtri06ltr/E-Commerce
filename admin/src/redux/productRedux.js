@@ -47,7 +47,7 @@ const productSlice = createSlice({
           (item) =>
             item._id === action.payload.id,
         )
-      ] = action.payload.product;
+      ] = action.payload.updatedProduct;
     },
     updateProductFailure: (state) => {
       state.isFetching = true;
