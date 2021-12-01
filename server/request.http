@@ -11,7 +11,7 @@ POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
 {
-    "username":"admin",
+    "username":"vana",
     "password":"123123"
 }
 
@@ -59,7 +59,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTIxZTJmM
 
 ###
 GET  http://localhost:5000/api/products
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTIxZTJmMmU4YWFmYWRjZTkzMDMzYiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODAxNDU2OCwiZXhwIjoxNjM4MjczNzY4fQ.vvmLPp0XiMjrJxr6ZxrylQR3wniuC29APXPnqQMOAfE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTIxZTJmMmU4YWFmYWRjZTkzMDMzYiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODMyMTI4MCwiZXhwIjoxNjM4NTgwNDgwfQ.LhKLebCGgcEDfNA1y9LiPOIjfZC_4dedhJV2WNeD5xQ
 
 ###
 POST   http://localhost:5000/api/orders/add
@@ -84,7 +84,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTA1MjE4Z
 
 ###
 GET  http://localhost:5000/api/orders/income
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTIxZTJmMmU4YWFmYWRjZTkzMDMzYiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODAxNDU2OCwiZXhwIjoxNjM4MjczNzY4fQ.vvmLPp0XiMjrJxr6ZxrylQR3wniuC29APXPnqQMOAfE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTIxZTJmMmU4YWFmYWRjZTkzMDMzYiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODMyMTI4MCwiZXhwIjoxNjM4NTgwNDgwfQ.LhKLebCGgcEDfNA1y9LiPOIjfZC_4dedhJV2WNeD5xQ
 
 ###
 PUT  http://localhost:5000/api/products/61a3439552c4aeb5f94fbc88
@@ -93,4 +93,26 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTIxZTJmM
 
 {
     "price":66
+}
+
+###
+DELETE   http://localhost:5000/api/products/61a4fd7f38ad199137c9c467
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTIxZTJmMmU4YWFmYWRjZTkzMDMzYiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODMyMTI4MCwiZXhwIjoxNjM4NTgwNDgwfQ.LhKLebCGgcEDfNA1y9LiPOIjfZC_4dedhJV2WNeD5xQ
+
+###
+PUT   http://localhost:5000/api/users/61a5b36fe1eeaba536dbdc6b
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTIxZTJmMmU4YWFmYWRjZTkzMDMzYiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODMyMTI4MCwiZXhwIjoxNjM4NTgwNDgwfQ.LhKLebCGgcEDfNA1y9LiPOIjfZC_4dedhJV2WNeD5xQ
+
+{
+    "email":"nguyenvana123@gmail.com"
+}
+
+###
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "username":"vana123",
+    "password":"alwayssmile"
 }

@@ -1,5 +1,9 @@
 import "./productList.css";
-import { DataGrid } from "@material-ui/data-grid";
+import {
+  DataGrid,
+  GridToolbarExport,
+  GridToolbarContainer,
+} from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 
 import { Link } from "react-router-dom";
@@ -12,7 +16,13 @@ import {
   deleteProduct,
   getAllProducts,
 } from "../../redux/apiRequest";
-
+function MyExportButton() {
+  return (
+    <GridToolbarContainer>
+      <GridToolbarExport />
+    </GridToolbarContainer>
+  );
+}
 export default function ProductList() {
   const products = useSelector(
     (state) => state.product.products,
@@ -95,6 +105,9 @@ export default function ProductList() {
         getRowId={(row) => row._id}
         pageSize={8}
         checkboxSelection
+        components={{
+          Toolbar: MyExportButton,
+        }}
       />
     </div>
   );

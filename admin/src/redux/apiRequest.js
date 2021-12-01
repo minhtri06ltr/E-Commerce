@@ -22,6 +22,9 @@ import {
   updateProductSuccess,
 } from "./productRedux";
 import {
+  addUserFailure,
+  addUserRequest,
+  addUserSuccess,
   getAllUsersRequest,
   getAllUsersSuccess,
 } from "./userListRedux";
@@ -125,5 +128,34 @@ export const getAllUsers = async (dispatch) => {
     );
   } catch (error) {
     dispatch(getAllProductsFailure());
+  }
+};
+
+export const addUser = async (dispatch, user) => {
+  dispatch(addUserRequest());
+  try {
+    const response = await userRequest.post(
+      "/users/register",
+      user,
+    );
+    dispatch(addUserSuccess(response.data));
+  } catch (error) {
+    dispatch(addUserFailure());
+  }
+};
+export const updateUser = async (
+  dispatch,
+  user,
+  id,
+) => {
+  dispatch(addUserRequest());
+  try {
+    const response = await userRequest.put(
+      `/users/${id}`,
+      user,
+    );
+    dispatch(addUserSuccess({ updatedUser, id }));
+  } catch (error) {
+    dispatch(addUserFailure());
   }
 };

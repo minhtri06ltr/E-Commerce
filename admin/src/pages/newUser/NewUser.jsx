@@ -1,12 +1,27 @@
 import "./newUser.css";
-
+import { useDispatch } from "react-redux";
 import { useState } from "react";
+import validator from "validator";
+import { addUser } from "../../redux/apiRequest";
 export default function NewUser() {
+  const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] =
+    useState("");
   const handleClick = (e) => {
     e.preventDefault();
+    if (!validator.isEmail(email)) {
+      setErrorMessage("Invalid email");
+      return;
+    } else {
+      addUser(dispatch, {
+        email,
+        username,
+        password,
+      });
+    }
   };
   return (
     <div className="newUser">
@@ -48,6 +63,14 @@ export default function NewUser() {
         >
           Create
         </button>
+        <span
+          style={{
+            color: "red",
+            fontWeight: "bold",
+          }}
+        >
+          {errorMessage}
+        </span>
       </form>
     </div>
   );

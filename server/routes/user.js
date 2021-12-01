@@ -14,7 +14,7 @@ const {
 //anyone can update user - required user id
 router.put(
   "/:id",
-  verifyTokenAndAuthentization,
+  verifyTokenAndAdmin,
   updateUser,
 );
 //anyone can update user - required user id
