@@ -37,4 +37,5 @@ router.get(
   verifyTokenAndAdmin,
   getUserStats,
 );
+
 module.exports = router;

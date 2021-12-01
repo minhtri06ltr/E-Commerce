@@ -10,6 +10,7 @@ export default function NewUser() {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] =
     useState("");
+
   const handleClick = (e) => {
     e.preventDefault();
     if (!validator.isEmail(email)) {
@@ -31,7 +32,7 @@ export default function NewUser() {
           <label>Username</label>
           <input
             type="text"
-            placeholder="Usernmae"
+            placeholder="Username"
             onChange={(e) =>
               setUsername(e.target.value)
             }

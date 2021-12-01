@@ -27,6 +27,10 @@ import {
   addUserSuccess,
   getAllUsersRequest,
   getAllUsersSuccess,
+  getAllUsersFailure,
+  updateUserRequest,
+  updateUserSuccess,
+  updateUserFailure,
 } from "./userListRedux";
 export const login = async (dispatch, user) => {
   dispatch(loginRequest());
@@ -127,7 +131,7 @@ export const getAllUsers = async (dispatch) => {
       getAllUsersSuccess(response.data.users),
     );
   } catch (error) {
-    dispatch(getAllProductsFailure());
+    dispatch(getAllUsersFailure());
   }
 };
 
@@ -135,7 +139,7 @@ export const addUser = async (dispatch, user) => {
   dispatch(addUserRequest());
   try {
     const response = await userRequest.post(
-      "/users/register",
+      "/auth/register",
       user,
     );
     dispatch(addUserSuccess(response.data));
@@ -148,14 +152,17 @@ export const updateUser = async (
   user,
   id,
 ) => {
-  dispatch(addUserRequest());
+  dispatch(updateUserRequest());
   try {
     const response = await userRequest.put(
       `/users/${id}`,
       user,
     );
-    dispatch(addUserSuccess({ updatedUser, id }));
+    const updatedUser = response.data.updatedUser;
+    dispatch(
+      updateUserSuccess({ updatedUser, id }),
+    );
   } catch (error) {
-    dispatch(addUserFailure());
+    dispatch(updateUserFailure());
   }
 };

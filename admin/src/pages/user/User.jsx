@@ -11,6 +11,7 @@ import {
   Link,
   useLocation,
 } from "react-router-dom";
+import validator from "validator";
 import "./user.css";
 import { format } from "timeago.js";
 import {
@@ -18,6 +19,7 @@ import {
   useDispatch,
 } from "react-redux";
 import { useState } from "react";
+import { updateUser } from "../../redux/apiRequest";
 export default function User() {
   const location = useLocation();
   const userId = location.pathname.split("/")[2];
@@ -29,16 +31,32 @@ export default function User() {
   const [username, setUsername] = useState(
     user.username,
   );
+
+  console.log(username);
   const [email, setEmail] = useState(user.email);
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] =
+    useState("");
   const dispatch = useDispatch();
   const handleClick = (e) => {
     e.preventDefault();
-    updateUser(
-      dispatch,
-      { username, password, email },
-      user._id,
-    );
+    if (!validator.isEmail(email)) {
+      setErrorMessage("Invalid email");
+      return;
+    }
+    if (password === "") {
+      updateUser(
+        dispatch,
+        { username, email },
+        user._id,
+      );
+    } else {
+      updateUser(
+        dispatch,
+        { username, password, email },
+        user._id,
+      );
+    }
   };
   return (
     <div className="user">
@@ -100,6 +118,13 @@ export default function User() {
               <LocationSearching className="userShowIcon" />
               <span className="userShowInfoTitle">New York | USA</span>
             </div> */}
+
+            <div className="userShowInfo">
+              <LockOpenOutlined className="userShowIcon" />
+              <span className="userShowInfoTitle">
+                {user.password}
+              </span>
+            </div>
           </div>
         </div>
         <div className="userUpdate">
@@ -186,6 +211,14 @@ export default function User() {
               >
                 Update
               </button>
+              <span
+                style={{
+                  color: "red",
+                  fontWeight: "bold",
+                }}
+              >
+                {errorMessage}
+              </span>
             </div>
           </form>
         </div>

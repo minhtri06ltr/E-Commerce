@@ -1,5 +1,9 @@
 import "./userList.css";
-import { DataGrid } from "@material-ui/data-grid";
+import {
+  DataGrid,
+  GridToolbarExport,
+  GridToolbarContainer,
+} from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 import { userRows } from "../../dummyData";
 import { Link } from "react-router-dom";
@@ -10,6 +14,14 @@ import {
   useSelector,
 } from "react-redux";
 import { getAllUsers } from "../../redux/apiRequest";
+
+function MyExportButton() {
+  return (
+    <GridToolbarContainer>
+      <GridToolbarExport />
+    </GridToolbarContainer>
+  );
+}
 export default function UserList() {
   const [data, setData] = useState(userRows);
   const userList = useSelector(
@@ -93,6 +105,9 @@ export default function UserList() {
         pageSize={8}
         getRowId={(row) => row._id}
         checkboxSelection
+        components={{
+          Toolbar: MyExportButton,
+        }}
       />
     </div>
   );
