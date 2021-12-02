@@ -31,9 +31,7 @@ const Success = () => {
           },
         );
         setOrderId(res.data._id);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch {}
     };
     data && createOrder();
   }, [cart, data, currentUser]);

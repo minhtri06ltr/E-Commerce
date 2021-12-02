@@ -4,7 +4,7 @@ import {
   ShoppingCartOutlined,
 } from "@mui/icons-material";
 import { Badge } from "@mui/material";
-import { mobile } from "../../responsive";
+import { mobile, fold } from "../../responsive";
 import { Link } from "react-router-dom";
 import {
   useDispatch,
@@ -14,6 +14,7 @@ import { logout } from "../../redux/apiRequest";
 const Container = styled.div`
   height: 60px;
   ${mobile({ height: "50px" })}
+  ${fold({ height: "70px" })}
 `;
 const Wrapper = styled.div`
   padding: 10px 20px;
@@ -38,6 +39,7 @@ const Right = styled.div`
   align-items: center;
   justify-content: flex-end;
   ${mobile({ justifyContent: "center", flex: 2 })}
+  ${fold({ flexDirection: "column" })}
 `;
 const Language = styled.span`
   font-size: 14px;
@@ -49,10 +51,12 @@ const SearchContainer = styled.div`
   display: flex;
   align-items: center;
   margin-left: 25px;
+  ${fold({ marginLeft: "0px" })}
 `;
 const Logo = styled.h1`
   font-weight: bold;
   ${mobile({ fontSize: "24px" })}
+  ${fold({ marginLeft: "10px" })}
 `;
 const Input = styled.input`
   border: none;

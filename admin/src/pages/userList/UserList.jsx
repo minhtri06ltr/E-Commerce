@@ -66,7 +66,7 @@ export default function UserList() {
       width: 230,
     },
     {
-      field: "createdAt",
+      field: "format",
       headerName: "Created",
       width: 105,
     },
@@ -103,9 +103,7 @@ export default function UserList() {
       },
     },
   ];
-  userList.map((user) => {
-    user.format = format(user.createdAt);
-  });
+
   return (
     <div className="userList">
       <DataGrid

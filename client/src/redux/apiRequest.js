@@ -7,7 +7,11 @@ import {
   registerSuccess,
   logoutRequest,
 } from "./userRedux";
-import { publicRequest } from "../helper/requestMethods";
+import { clearCart } from "./cartRedux";
+import {
+  publicRequest,
+  userRequest,
+} from "../helper/requestMethods";
 export const login = async (dispatch, user) => {
   dispatch(loginRequest());
   try {
@@ -40,4 +44,21 @@ export const register = async (
 
 export const logout = async (dispatch) => {
   dispatch(logoutRequest());
+  dispatch(clearCart());
+};
+
+export const getUserCart = async (
+  dispatch,
+  id,
+) => {
+  dispatch(loginRequest());
+  try {
+    const response = await userRequest.get(
+      "/carts/getusercart",
+      id,
+    );
+    dispatch(loginSuccess(response.data));
+  } catch (error) {
+    dispatch(loginFailure());
+  }
 };

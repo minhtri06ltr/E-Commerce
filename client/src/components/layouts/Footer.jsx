@@ -138,7 +138,7 @@ const Footer = () => {
           />
           laptopdienthoai1@gmail.com
         </ContactItem>
-        <Payment src="https://i.redd.it/5m2flzftc3e71.jpg" />
+        <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
       </Right>
     </Container>
   );

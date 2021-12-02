@@ -6,3 +6,11 @@ export const mobile = (props) => {
     }
   `;
 };
+
+export const fold = (props) => {
+  return css`
+    @media only screen and (max-width: 285px) {
+      ${props}
+    }
+  `;
+};

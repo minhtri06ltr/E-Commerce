@@ -5,9 +5,10 @@ import Layout from "../components/layouts/Layout";
 import { mobile } from "../responsive";
 import StripeCheckout from "react-stripe-checkout";
 import { useEffect, useState } from "react";
-import { userRequest } from "../helper/requestMethods";
-import { useNavigate } from "react-router-dom";
 
+import { userRequest } from "../helper/requestMethods";
+import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
 const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 20px;
@@ -158,9 +159,9 @@ const Button = styled.button`
 const Cart = () => {
   const KEY =
     "pk_test_51K0enCDzr6LNQ8Fc5SlrYCUSp2ORkjw2rLdlXP2j3UtWn2yz6BzSLa5i0fToYH7O6zyajt6291A8LMCJ1gsB9AQ100uMO2vlUq";
-  console.log(KEY);
   const cart = useSelector((state) => state.cart);
-  const navigate = useNavigate();
+  const history = useHistory();
+
   //state
   const [stripeToken, setStripeToken] =
     useState(null);
@@ -175,7 +176,8 @@ const Cart = () => {
             amount: cart.total * 100,
           },
         );
-        navigate("/success", {
+
+        history.push("/success", {
           stripeData:
             response.data.stripeResponse,
           products: cart,
@@ -185,7 +187,7 @@ const Cart = () => {
       }
     };
     stripeToken && makePaymentRequest();
-  }, [stripeToken, cart.total, navigate]);
+  }, [stripeToken, cart.total, history]);
   //function
   const onToken = (token) => {
     setStripeToken(token);
@@ -196,15 +198,17 @@ const Cart = () => {
         <Wrapper>
           <Title>YOUR BAG</Title>
           <Top>
-            <TopButton>
-              COUNTINUE SHOPPING
-            </TopButton>
+            <Link to="/">
+              <TopButton>
+                COUNTINUE SHOPPING
+              </TopButton>
+            </Link>
             <TopTexts>
               <TopText>Shopping Bag(2)</TopText>
-              <TopText>Your Wishlist(0)</TopText>
+              {/* <TopText>Your Wishlist(0)</TopText> */}
             </TopTexts>
             <TopButton type="filled">
-              CHECKOUT NOW
+              YOUR ORDERS
             </TopButton>
           </Top>
           <Bottom>
@@ -272,7 +276,7 @@ const Cart = () => {
                   Estimated Shipping
                 </SummaryItemText>
                 <SummaryItemPrice>
-                  $ 5
+                  $ 0
                 </SummaryItemPrice>
               </SummaryItem>
               <SummaryItem>
@@ -280,7 +284,7 @@ const Cart = () => {
                   Shipping Discount
                 </SummaryItemText>
                 <SummaryItemPrice>
-                  $ -5
+                  $ 0
                 </SummaryItemPrice>
               </SummaryItem>
               <SummaryItem type="total">
@@ -292,7 +296,7 @@ const Cart = () => {
                 </SummaryItemPrice>
               </SummaryItem>
               <StripeCheckout
-                name="Hol Shop"
+                name="HOLO SHOP"
                 //logo
                 image="https://i.redd.it/5m2flzftc3e71.jpg"
                 billingAddress

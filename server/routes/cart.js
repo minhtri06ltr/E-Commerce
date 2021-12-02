@@ -5,34 +5,13 @@ const {
   verifyToken,
 } = require("../middlewares/auth");
 const {
-  addCart,
-  updateCart,
-  deleteCart,
-  getCart,
-  getAllCarts,
+  addItemToCart,
 } = require("../controllers/cart");
 
-//anyone can create cart - required login
-router.post("/add", verifyToken, addCart);
-//anyone can update cart
-router.put(
-  "/:id",
+router.post(
+  "/addtocart",
   verifyTokenAndAuthentization,
-  updateCart,
+  addItemToCart,
 );
-//anyone can delete cart
-router.delete(
-  "/:id",
-  verifyTokenAndAuthentization,
-  deleteCart,
-);
-//anyone can get user cart
-router.get(
-  "/find/:userId",
-  verifyTokenAndAuthentization,
-  getCart,
-);
-//only admin can get all carts
-router.get("/", verifyTokenAndAdmin, getAllCarts);
 
 module.exports = router;
