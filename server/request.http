@@ -130,9 +130,24 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTIxZTJmM
     "cartItems":[
             {
                 "product":"61a2edd4781dfbcda6be6908",
-            "quantity":10,
+            "quantity":3,
             "size": "M",
-        "color":"Black"
+        "color":"White"
             }
     ]   
+}
+
+###
+GET  http://localhost:5000/api/carts/getcartitems
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTIxZTJmMmU4YWFmYWRjZTkzMDMzYiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODMyMTI4MCwiZXhwIjoxNjM4NTgwNDgwfQ.LhKLebCGgcEDfNA1y9LiPOIjfZC_4dedhJV2WNeD5xQ
+
+###
+DELETE   http://localhost:5000/api/carts/removeitem
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTIxZTJmMmU4YWFmYWRjZTkzMDMzYiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODMyMTI4MCwiZXhwIjoxNjM4NTgwNDgwfQ.LhKLebCGgcEDfNA1y9LiPOIjfZC_4dedhJV2WNeD5xQ
+
+{
+    "productId":"61a2edd4781dfbcda6be6908",
+            "size": "M",
+        "color":"Black"
 }

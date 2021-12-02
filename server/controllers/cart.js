@@ -30,13 +30,7 @@ exports.addItemToCart = async (req, res) => {
             c.size === cartItem.size &&
             c.color === cartItem.color, //return 1 value
         );
-        item
-          ? console.log(item)
-          : console.log("no co");
-        // console.log(item.color);
-        // console.log(item.size);
-        // console.log(req.body.cartItems[0].size);
-        // console.log(req.body.cartItems[0].color);
+
         let condition, update;
         //product already exit in cart of database -> change quantity
         if (item) {
@@ -104,6 +98,104 @@ exports.addItemToCart = async (req, res) => {
             success: true,
             cart,
           });
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({
+      success: false,
+      message: "Something may wrong",
+    });
+  }
+};
+
+exports.getCartItems = async (req, res) => {
+  try {
+    //find user cart
+    const findCart = await Cart.findOne({
+      user: req.user.id,
+      //replace cartItems.product = _id title price img
+    }).populate(
+      "cartItems.product",
+      "_id title price img inStock",
+    );
+
+    if (findCart) {
+      let cartItems = {};
+
+      findCart.cartItems.forEach(
+        (item, index) => {
+          //change mongodb _id to string
+          //create new cartItems return to client
+          cartItems[index] =
+            //[key]
+            {
+              _id: item.product._id.toString(),
+              title: item.product.title,
+              price: item.product.price,
+              quantity: item.quantity,
+              color: item.color,
+              size: item.size,
+              img: item.product.img,
+              inStock:
+                item.product.inStock.toString(),
+            };
+        },
+      );
+
+      res.status(200).json({
+        success: true,
+        cartItems,
+      });
+    } else {
+      res.status(400).json({
+        success: false,
+        message:
+          "Something may wrong when working with database",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({
+      success: false,
+      message: "Something may wrong",
+    });
+  }
+};
+
+exports.removeCartItems = async (req, res) => {
+  try {
+    const { productId, color, size } = req.body;
+
+    if (productId) {
+      const newCart = await Cart.updateOne(
+        { user: req.user.id },
+        {
+          $pull: {
+            cartItems: {
+              product: productId,
+              color: color,
+              size: size,
+            },
+          },
+        },
+      );
+      if (newCart) {
+        return res.status(200).json({
+          success: true,
+          newCart,
+        });
+      } else {
+        res.status(400).json({
+          success: false,
+          message:
+            "Something may wrong when working with database",
+        });
+      }
+    } else {
+      res.status(400).json({
+        success: false,
+        message: "Don't find product in cart",
       });
     }
   } catch (error) {
