@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const {
-  verifyTokenAndAuthentization,
+  verifyToken,
 } = require("../middlewares/auth");
 const {
   addItemToCart,
@@ -10,17 +10,17 @@ const {
 
 router.post(
   "/addtocart",
-  verifyTokenAndAuthentization,
+  verifyToken,
   addItemToCart,
 );
 router.get(
   "/getcartitems",
-  verifyTokenAndAuthentization,
+  verifyToken,
   getCartItems,
 );
 router.delete(
   "/removeitem",
-  verifyTokenAndAuthentization,
+  verifyToken,
   removeCartItems,
 );
 module.exports = router;

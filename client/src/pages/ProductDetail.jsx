@@ -5,8 +5,9 @@ import { mobile } from "../responsive";
 import { useLocation } from "react-router";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addProductToCart } from "../redux/cartRedux";
+
 import { publicRequest } from "../helper/requestMethods";
+import { addToCart } from "../redux/apiRequest";
 const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 50px;
@@ -126,7 +127,7 @@ const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
-  console.log(size, color);
+
   //effect
   useEffect(() => {
     const getProduct = async () => {
@@ -150,15 +151,15 @@ const ProductDetail = () => {
     }
   };
   const handleAddToCart = () => {
-    console.log("hello");
-    dispatch(
-      addProductToCart({
-        ...product,
-        quantity,
-        color,
-        size,
-      }),
-    );
+    let cartItems = [
+      {
+        product: productId,
+        quantity: quantity,
+        color: color,
+        size: size,
+      },
+    ];
+    addToCart(dispatch, cartItems);
   };
   return (
     <Container>

@@ -47,18 +47,59 @@ export const logout = async (dispatch) => {
   dispatch(clearCart());
 };
 
-export const getUserCart = async (
+// export const getUserCart = async (
+//   dispatch,
+//   id,
+// ) => {
+//   dispatch(loginRequest());
+//   try {
+//     const response = await userRequest.get(
+//       "/carts/getusercart",
+//       id,
+//     );
+//     dispatch(loginSuccess(response.data));
+//   } catch (error) {
+//     dispatch(loginFailure());
+//   }
+// };
+
+export const addToCart = async (
   dispatch,
-  id,
+  cartItems,
 ) => {
-  dispatch(loginRequest());
+  try {
+    const response = await userRequest.post(
+      "/carts/addtocart",
+      { cartItems },
+    );
+    console.log(cartItems);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getCartItems = async (dispatch) => {
   try {
     const response = await userRequest.get(
-      "/carts/getusercart",
-      id,
+      "/carts/getcartitems",
     );
-    dispatch(loginSuccess(response.data));
+    console.log(response);
   } catch (error) {
-    dispatch(loginFailure());
+    console.log(error);
+  }
+};
+
+export const deleteCartItem = async (
+  dispatch,
+  cartItem,
+) => {
+  try {
+    const response = await userRequest.delete(
+      "/carts/removeitem",
+      cartItem,
+    );
+    console.log(response);
+  } catch (error) {
+    console.log(error);
   }
 };

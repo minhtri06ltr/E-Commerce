@@ -1,5 +1,8 @@
 import { Add, Remove } from "@mui/icons-material";
-import { useSelector } from "react-redux";
+import {
+  useSelector,
+  useDispatch,
+} from "react-redux";
 import styled from "styled-components";
 import Layout from "../components/layouts/Layout";
 import { mobile } from "../responsive";
@@ -9,6 +12,10 @@ import { useEffect, useState } from "react";
 import { userRequest } from "../helper/requestMethods";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
+import {
+  deleteCartItem,
+  getCartItems,
+} from "../redux/apiRequest";
 const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 20px;
@@ -161,7 +168,7 @@ const Cart = () => {
     "pk_test_51K0enCDzr6LNQ8Fc5SlrYCUSp2ORkjw2rLdlXP2j3UtWn2yz6BzSLa5i0fToYH7O6zyajt6291A8LMCJ1gsB9AQ100uMO2vlUq";
   const cart = useSelector((state) => state.cart);
   const history = useHistory();
-
+  const dispatch = useDispatch();
   //state
   const [stripeToken, setStripeToken] =
     useState(null);
@@ -188,9 +195,24 @@ const Cart = () => {
     };
     stripeToken && makePaymentRequest();
   }, [stripeToken, cart.total, history]);
+  useEffect(() => {
+    getCartItems(dispatch);
+  }, []);
   //function
   const onToken = (token) => {
     setStripeToken(token);
+  };
+  const handleDelete = (
+    size,
+    color,
+    product_Id,
+  ) => {
+    let cartItem = {
+      productId: product_Id,
+      color: color,
+      size: size,
+    };
+    deleteCartItem(dispatch, cartItem);
   };
   return (
     <Container>
@@ -253,6 +275,18 @@ const Cart = () => {
                           </ProductPrice>
                         </ProductQuantityContainer>
                       </PriceDetail>
+                      <Button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleDelete(
+                            product.size,
+                            product.color,
+                            product._id,
+                          );
+                        }}
+                      >
+                        REMOVE
+                      </Button>
                     </ProductItem>
                     <Hr />
                   </div>

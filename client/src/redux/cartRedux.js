@@ -10,13 +10,33 @@ const cartSlice = createSlice({
     error: false,
   },
   reducers: {
+    addProductToCartRequest: (state, action) => {
+      state.isFetching = true;
+    },
     addProductToCart: (state, action) => {
-      state.quantity = state.quantity + 1;
-      state.products.push(action.payload);
-      state.total =
-        state.total +
-        action.payload.price *
-          action.payload.quantity;
+      state.products.push(action.payload[0]);
+      let total = 0;
+
+      state.products.map((item, key) => {
+        total =
+          total + item.price * item.quantity;
+        if (
+          action.payload[0].productId ===
+            item.productId &&
+          action.payload[0].color ===
+            item.color &&
+          action.payload[0].size === item.size
+        ) {
+          state.quantity++;
+        }
+      });
+      state.total = total;
+
+      state.isFetching = false;
+    },
+    addProductToCartFailure: (state, action) => {
+      state.isFetching = false;
+      state.error = true;
     },
     getUserCartRequest: (state) => {
       state.isFetching = true;
@@ -40,7 +60,9 @@ const cartSlice = createSlice({
 });
 
 export const {
-  addProductToCart,
+  addProductToCartRequest,
+  addProductToCartSuccess,
+  addProductToCartFailure,
   getUserCartRequest,
   getUserCartSuccess,
   getUserCartFailure,

@@ -2,9 +2,14 @@ const Cart = require("../models/cart");
 
 function runUpdate(condition, updateData) {
   return new Promise((resolve, reject) => {
-    Cart.findOneAndUpdate(condition, updateData, {
-      upsert: true,
-    })
+    Cart.findOneAndUpdate(
+      condition,
+      updateData,
+
+      {
+        upsert: true,
+      },
+    )
       .then((result) => resolve())
       .catch((error) => reject(error));
   });
