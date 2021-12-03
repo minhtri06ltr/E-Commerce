@@ -126,7 +126,7 @@ exports.getCartItems = async (req, res) => {
     );
 
     if (findCart) {
-      let cartItems = {};
+      let cartItems = [];
 
       findCart.cartItems.forEach(
         (item, index) => {

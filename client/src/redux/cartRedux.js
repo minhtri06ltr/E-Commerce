@@ -42,10 +42,9 @@ const cartSlice = createSlice({
       state.isFetching = true;
     },
     getUserCartSuccess: (state, action) => {
+      console.log(action.payload);
       state.isFetching = false;
-      state.products = action.payload.products;
-      state.total = action.payload.total;
-      state.quantity = action.payload.quantity;
+      state.products = action.payload.cartItems;
     },
     getUserCartFailure: (state) => {
       state.error = true;

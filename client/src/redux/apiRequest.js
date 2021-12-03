@@ -7,7 +7,15 @@ import {
   registerSuccess,
   logoutRequest,
 } from "./userRedux";
-import { clearCart } from "./cartRedux";
+import {
+  addProductToCartFailure,
+  addProductToCartRequest,
+  addProductToCartSuccess,
+  getUserCartRequest,
+  getUserCartFailure,
+  getUserCartSuccess,
+  clearCart,
+} from "./cartRedux";
 import {
   publicRequest,
   userRequest,
@@ -67,25 +75,35 @@ export const addToCart = async (
   dispatch,
   cartItems,
 ) => {
+  dispatch(addProductToCartRequest());
   try {
     const response = await userRequest.post(
       "/carts/addtocart",
       { cartItems },
     );
-    console.log(cartItems);
+    if (response.data.success)
+      dispatch(
+        addProductToCartRequest(cartItems),
+      );
   } catch (error) {
     console.log(error);
+    dispatch(addProductToCartFailure());
   }
 };
 
 export const getCartItems = async (dispatch) => {
+  dispatch(getUserCartRequest());
   try {
     const response = await userRequest.get(
       "/carts/getcartitems",
     );
-    console.log(response);
+    console.log(response.data.cartItems);
+    dispatch(
+      getUserCartSuccess(response.data.cartItems),
+    );
   } catch (error) {
     console.log(error);
+    dispatch(getUserCartFailure());
   }
 };
 
@@ -98,7 +116,9 @@ export const deleteCartItem = async (
       "/carts/removeitem",
       cartItem,
     );
-    console.log(response);
+    if (response.data.success) {
+      dispatch(getCartItems());
+    }
   } catch (error) {
     console.log(error);
   }

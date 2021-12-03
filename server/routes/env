@@ -1,5 +1,0 @@
-MONGODB_URL = mongodb+srv://minhtri06ltr:alwayssmile1Q@ecommerce.xzlu4.mongodb.net/Ecommerce?retryWrites=true&w=majority
-HASH_KEY = holo
-JWT_KEY = holo
-STRIPE_PASSWORD = alwayssmile1Q10122001
-STRIPE_KEY = sk_test_51K0enCDzr6LNQ8Fcn3HZuvdPb4Bv0m3ZQnSNigymz4KM5RwO4ouIDH10JiAy8t1Eh73BxEhstGbS7F6tK2iCGPLJ00VceWPnnK

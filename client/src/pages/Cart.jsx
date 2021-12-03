@@ -167,6 +167,7 @@ const Cart = () => {
   const KEY =
     "pk_test_51K0enCDzr6LNQ8Fc5SlrYCUSp2ORkjw2rLdlXP2j3UtWn2yz6BzSLa5i0fToYH7O6zyajt6291A8LMCJ1gsB9AQ100uMO2vlUq";
   const cart = useSelector((state) => state.cart);
+  const user = useSelector((state) => state.user);
   const history = useHistory();
   const dispatch = useDispatch();
   //state
@@ -214,6 +215,7 @@ const Cart = () => {
     };
     deleteCartItem(dispatch, cartItem);
   };
+  console.log(user.currentUser);
   return (
     <Container>
       <Layout>
@@ -226,7 +228,9 @@ const Cart = () => {
               </TopButton>
             </Link>
             <TopTexts>
-              <TopText>Shopping Bag(2)</TopText>
+              <TopText>
+                Shopping Bag({cart.quantity})
+              </TopText>
               {/* <TopText>Your Wishlist(0)</TopText> */}
             </TopTexts>
             <TopButton type="filled">
@@ -235,7 +239,7 @@ const Cart = () => {
           </Top>
           <Bottom>
             <Info>
-              {cart.products.map(
+              {cart.products?.map(
                 (product, index) => (
                   <div key={index}>
                     <ProductItem>
