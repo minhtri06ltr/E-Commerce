@@ -44,7 +44,7 @@ const Search = () => {
         };
         getProducts();
       }, []);
-      console.log(products)
+     
     return (
         <Layout>
            <SearchContainer>
@@ -58,15 +58,27 @@ const Search = () => {
           </SearchContainer>
          <Container>
          {
-               products
+             filter ==="" ?  products
                
                .map((item, index) => (
                  <ProductItem
                    key={index}
                    item={item}
-                   filter={filter}
+                  
                  />
-               ))
+               )) : products
+               
+               .filter((item, index) => 
+                {
+                    if(item.title.toLowerCase().includes(filter.toLowerCase())){
+                        return item;
+                    }
+                }
+               ).map((item,index)=> ( <ProductItem
+                key={index}
+                item={item}
+               
+              />))
           }
          </Container>
         </Layout>
