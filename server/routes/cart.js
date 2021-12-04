@@ -6,6 +6,8 @@ const {
   addItemToCart,
   getCartItems,
   removeCartItems,
+  changeQuantity,
+  deleteCart,
 } = require("../controllers/cart");
 
 router.post(
@@ -18,9 +20,20 @@ router.get(
   verifyToken,
   getCartItems,
 );
-router.delete(
+router.post(
   "/removeitem",
   verifyToken,
   removeCartItems,
 );
+router.post(
+  "/changequantity",
+  verifyToken,
+  changeQuantity,
+);
+router.delete(
+  "/delete",
+  verifyToken,
+  deleteCart,
+);
+
 module.exports = router;

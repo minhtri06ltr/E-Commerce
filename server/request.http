@@ -151,3 +151,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTU4NDlhZ
             "size": "M",
         "color":"White"
 }
+
+###
+POST   http://localhost:5000/api/carts/changequantity
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTU4NDlhZjcyMmM4ZTY3ZjY4NDM0ZCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2Mzg0MzkwNjUsImV4cCI6MTYzODY5ODI2NX0.xXl5XfSKCtY7K33QFUDj0M6ggzanMMe1Wuj5dj95q1o
+
+{
+    "productId":"61a3438a52c4aeb5f94fbc87",
+            "size": "M",
+        "color":"Green",
+        "value":-1
+}
+
+###
+GET  http://localhost:5000/api/products

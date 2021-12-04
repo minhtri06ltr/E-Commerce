@@ -1,3 +1,4 @@
+const { findOneAndDelete } = require("../models/cart");
 const Cart = require("../models/cart");
 
 function runUpdate(condition, updateData) {
@@ -171,7 +172,8 @@ exports.getCartItems = async (req, res) => {
 exports.removeCartItems = async (req, res) => {
   try {
     const { productId, color, size } = req.body;
-
+    console.log(req.body)
+console.log(productId)
     if (productId) {
       const newCart = await Cart.updateOne(
         { user: req.user.id },
@@ -211,3 +213,67 @@ exports.removeCartItems = async (req, res) => {
     });
   }
 };
+
+
+exports.changeQuantity = async(req,res)=>{
+  const {productId,color,size,value} = req.body
+ 
+
+try{
+  let  update = {
+    
+    $inc: {
+      "cartItems.$.quantity":
+       value,
+    },
+  };
+  let condition = {
+    user:req.user.id,
+    "cartItems.product": productId,
+    "cartItems.color":color,
+    "cartItems.size":size
+
+  }
+  const newCart = await Cart.findOneAndUpdate(
+    condition,
+    update,
+
+    {
+      new: true,
+    },
+  )
+    res.status(200).json({
+      success:true,
+      message:"change quantity successfull",
+      newCart
+    })
+}catch(error){
+    res.status(500).json({
+      success:false,
+      message:"Internal server error",
+      error
+    })
+  }
+  
+}
+
+exports.deleteCart = async (req,res)=>{
+    try{
+      const deleteCart = await Cart.findOneAndDelete({ user: req.user.id,})
+      if(deleteCart){
+        res.status(200).json({
+          success:true,
+          message:"delete successfull",
+          deleteCart
+        })
+      }
+
+    }catch(error){
+      console.log(error)
+      res.status(500).json({
+        success:false,
+        message:"Internal server error",
+        error
+      })
+    }
+}

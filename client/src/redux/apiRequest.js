@@ -15,6 +15,7 @@ import {
   getUserCartFailure,
   getUserCartSuccess,
   clearCart,
+  incProduct,
 } from "./cartRedux";
 import {
   publicRequest,
@@ -33,6 +34,21 @@ export const login = async (dispatch, user) => {
   }
 };
 
+export const getCartItems = async (dispatch) => {
+  dispatch(getUserCartRequest());
+  try {
+    const response = await userRequest.get(
+      "/carts/getcartitems",
+    );
+    console.log(response.data.cartItems);
+    dispatch(
+      getUserCartSuccess(response.data.cartItems),
+    );
+  } catch (error) {
+    console.log(error);
+    dispatch(getUserCartFailure());
+  }
+};
 export const register = async (
   dispatch,
   user,
@@ -81,45 +97,61 @@ export const addToCart = async (
       "/carts/addtocart",
       { cartItems },
     );
-    if (response.data.success)
+    
       dispatch(
-        addProductToCartRequest(cartItems),
+        addProductToCartSuccess(cartItems),
+      );
+      dispatch(
+        getCartItems(dispatch),
       );
   } catch (error) {
-    console.log(error);
-    dispatch(addProductToCartFailure());
+   
   }
 };
 
-export const getCartItems = async (dispatch) => {
-  dispatch(getUserCartRequest());
-  try {
-    const response = await userRequest.get(
-      "/carts/getcartitems",
-    );
-    console.log(response.data.cartItems);
-    dispatch(
-      getUserCartSuccess(response.data.cartItems),
-    );
-  } catch (error) {
-    console.log(error);
-    dispatch(getUserCartFailure());
-  }
-};
 
 export const deleteCartItem = async (
   dispatch,
   cartItem,
 ) => {
+  console.log(cartItem)
   try {
-    const response = await userRequest.delete(
+    const response = await userRequest.post(
       "/carts/removeitem",
       cartItem,
     );
     if (response.data.success) {
-      dispatch(getCartItems());
+      dispatch(getCartItems(dispatch));
     }
   } catch (error) {
     console.log(error);
   }
 };
+
+export const changeQuantity = async (
+  dispatch,
+  data,
+) => {
+ 
+  try {
+    const response = await userRequest.post(
+      "/carts/changequantity",
+      data,
+    );
+   
+   if(response.data.success){
+     dispatch(incProduct(data));
+   }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteCart = async(dispatch)=>{
+  try {
+    const response = await userRequest.delete("/carts/delete")
+    dispatch(clearCart())
+  } catch (error) {
+    console.log(error)
+  }
+}

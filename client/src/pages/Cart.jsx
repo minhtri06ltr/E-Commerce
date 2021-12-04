@@ -13,6 +13,7 @@ import { userRequest } from "../helper/requestMethods";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 import {
+  changeQuantity,
   deleteCartItem,
   getCartItems,
 } from "../redux/apiRequest";
@@ -167,7 +168,7 @@ const Cart = () => {
   const KEY =
     "pk_test_51K0enCDzr6LNQ8Fc5SlrYCUSp2ORkjw2rLdlXP2j3UtWn2yz6BzSLa5i0fToYH7O6zyajt6291A8LMCJ1gsB9AQ100uMO2vlUq";
   const cart = useSelector((state) => state.cart);
-  const user = useSelector((state) => state.user);
+  
   const history = useHistory();
   const dispatch = useDispatch();
   //state
@@ -188,7 +189,7 @@ const Cart = () => {
         history.push("/success", {
           stripeData:
             response.data.stripeResponse,
-          products: cart,
+          cart: cart,
         });
       } catch (error) {
         console.log(error);
@@ -208,14 +209,24 @@ const Cart = () => {
     color,
     product_Id,
   ) => {
+   
     let cartItem = {
       productId: product_Id,
       color: color,
       size: size,
     };
+    console.log(cartItem)
     deleteCartItem(dispatch, cartItem);
   };
-  console.log(user.currentUser);
+  const handleChange = (productChangeId,color,size,value)=>{
+      let data={
+        productId:productChangeId,
+        color:color,
+        size:size,
+        value:value
+      }
+      changeQuantity(dispatch,data)
+  }
   return (
     <Container>
       <Layout>
@@ -267,11 +278,16 @@ const Cart = () => {
                       </ProductDetail>
                       <PriceDetail>
                         <ProductQuantityContainer>
-                          <Remove />
+                          <Remove style={{cursor:"pointer"}} onClick = {e=>{
+                            if(product.quantity <=1) return;
+                          handleChange(product._id,product.color,product.size,-1)
+                          }} />
                           <ProductQuantity>
                             {product.quantity}
                           </ProductQuantity>
-                          <Add />
+                          <Add  style={{cursor:"pointer"}} onClick = {e=>{
+                          handleChange(product._id,product.color,product.size,1)
+                          }}/>
                           <ProductPrice>
                             ${" "}
                             {product.price *
@@ -280,6 +296,7 @@ const Cart = () => {
                         </ProductQuantityContainer>
                       </PriceDetail>
                       <Button
+                      style={{width:"auto",marginRight:"50px"}}
                         onClick={(e) => {
                           e.preventDefault();
                           handleDelete(
