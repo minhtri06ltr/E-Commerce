@@ -14,6 +14,7 @@ import {
 import "./App.css";
 import { useSelector } from "react-redux";
 import Search from "./pages/Search";
+import Order from "./pages/Order";
 const App = () => {
   const user = useSelector(
     (state) => state.user.currentUser,
@@ -38,6 +39,9 @@ const App = () => {
         </Route>
         <Route path="/search">
           <Search />
+        </Route>
+        <Route path="/orders">
+          <Order />
         </Route>
         <Route path="/login">
           {user ? <Redirect to="/" /> : <Login />}
