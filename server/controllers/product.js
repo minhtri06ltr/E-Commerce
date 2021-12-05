@@ -1,5 +1,5 @@
 const Product = require("../models/product");
-
+const Order = require("../models/order");
 exports.addProduct = async (req, res) => {
   const newProduct = new Product(req.body);
   try {
@@ -113,6 +113,31 @@ exports.getAllProducts = async (req, res) => {
       success: true,
       message: "Get all products successfull",
       products, //return array
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: "Something when wrong",
+      error,
+    });
+  }
+};
+exports.getProductSale = async (req, res) => {
+  try {
+    const orders = await Order.find();
+    let count = 0;
+    orders.forEach((item, index) => {
+      item.products.map((product) => {
+        if (product.productId === req.params.id) {
+          count = count + product.quantity;
+        }
+      });
+    });
+    res.status(200).json({
+      success: true,
+      message: "Count sale successfull",
+      count,
     });
   } catch (error) {
     console.log(error);

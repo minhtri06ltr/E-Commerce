@@ -9,6 +9,7 @@ const {
   deleteProduct,
   getProduct,
   getAllProducts,
+  getProductSale,
 } = require("../controllers/product");
 
 //only admin can add new product
@@ -33,4 +34,10 @@ router.delete(
 router.get("/find/:id", getProduct);
 //anyone can get all products
 router.get("/", getAllProducts);
+
+router.get(
+  "/getproductsale/:id",
+  verifyTokenAndAdmin,
+  getProductSale,
+);
 module.exports = router;

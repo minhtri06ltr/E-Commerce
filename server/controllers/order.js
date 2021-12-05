@@ -160,3 +160,23 @@ exports.getOrderStats = async (req, res) => {
     });
   }
 };
+
+exports.getUserOrder = async (req, res) => {
+  try {
+    const findOrder = await Order.find({
+      user: req.user.id,
+    });
+    res.status(200).json({
+      success: true,
+      message: "Create order successfull",
+      findOrder,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: "Something when wrong",
+      error,
+    });
+  }
+};

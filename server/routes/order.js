@@ -11,6 +11,7 @@ const {
   getOrder,
   getAllOrders,
   getOrderStats,
+  getUserOrder,
 } = require("../controllers/order");
 
 //anyone can create order - required login
@@ -44,5 +45,10 @@ router.get(
   "/income",
   verifyTokenAndAdmin,
   getOrderStats,
+);
+router.get(
+  "/getorder",
+  verifyToken,
+  getUserOrder,
 );
 module.exports = router;
