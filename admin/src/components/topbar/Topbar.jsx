@@ -1,12 +1,15 @@
 import React from "react";
 import "./topbar.css";
 import {
-  NotificationsNone,
+  ExitToApp,
   Language,
   Settings,
 } from "@material-ui/icons";
+import { useDispatch } from "react-redux";
+import { logoutSuccess } from "../../redux/userRedux";
 
 export default function Topbar() {
+  const dispatch = useDispatch()
   return (
     <div className="topbar">
       <div className="topbarWrapper">
@@ -14,11 +17,14 @@ export default function Topbar() {
           <span className="logo">HOLO Admin</span>
         </div>
         <div className="topRight">
-          <div className="topbarIconContainer">
-            <NotificationsNone />
-            <span className="topIconBadge">
-              0
-            </span>
+          <div className="topbarIconContainer"
+          onClick = {e=>{
+            e.preventDefault();
+            dispatch(logoutSuccess())
+          }}
+          >
+            <ExitToApp  />
+           
           </div>
           <div className="topbarIconContainer">
             <Language />

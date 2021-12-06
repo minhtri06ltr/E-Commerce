@@ -74,54 +74,7 @@ const Order = () => {
      
     return (
         <Layout>
-            <Info>
-              {cart.products?.map(
-                (product, index) => (
-                  <div key={index}>
-                    <ProductItem>
-                      <ProductDetail>
-                        <Image
-                          src={product.img}
-                        />
-                        <Details>
-                          <ProductName>
-                            <b>Product: </b>
-                            {product.title}
-                          </ProductName>
-                          <ProductId>
-                            <b>ID: </b>
-                            {product._id}
-                          </ProductId>
-                          <ProductColor
-                            color={product.color}
-                          />
-                          <ProductSize>
-                            <b>Size: </b>
-                            {product.size}
-                          </ProductSize>
-                        </Details>
-                      </ProductDetail>
-                      <PriceDetail>
-                        <ProductQuantityContainer>
-                         
-                          <ProductQuantity>
-                            {product.quantity}
-                          </ProductQuantity>
-                       
-                          <ProductPrice>
-                            ${" "}
-                            {product.price *
-                              product.quantity}
-                          </ProductPrice>
-                        </ProductQuantityContainer>
-                      </PriceDetail>
-                      
-                    </ProductItem>
-                    <Hr />
-                  </div>
-                ),
-              )}
-            </Info>
+           
         
         </Layout>
     )

@@ -17,6 +17,8 @@ import {
   deleteCartItem,
   getCartItems,
 } from "../redux/apiRequest";
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 20px;
@@ -164,6 +166,17 @@ const Button = styled.button`
   color: white;
   font-weight: 600;
 `;
+const _exportPdf = () => {
+
+  html2canvas(document.querySelector("#capture")).then(canvas => {
+     document.body.appendChild(canvas);  // if you want see your screenshot in body.
+     const imgData = canvas.toDataURL('image/png');
+     const pdf = new jsPDF('p', 'pt', 'a4', false);
+     pdf.addImage(imgData, 'PNG', 0, 0, 600, 0, undefined, false);
+     pdf.save("YouCart.pdf"); 
+ });
+
+}
 const Cart = () => {
   const KEY =
     "pk_test_51K0enCDzr6LNQ8Fc5SlrYCUSp2ORkjw2rLdlXP2j3UtWn2yz6BzSLa5i0fToYH7O6zyajt6291A8LMCJ1gsB9AQ100uMO2vlUq";
@@ -228,10 +241,10 @@ const Cart = () => {
       changeQuantity(dispatch,data)
   }
   return (
-    <Container>
+    <Container >
       <Layout>
         <Wrapper>
-          <Title>YOUR BAG</Title>
+          <Title >YOUR BAG</Title>
           <Top>
             <Link to="/">
               <TopButton>
@@ -244,12 +257,12 @@ const Cart = () => {
               </TopText>
               {/* <TopText>Your Wishlist(0)</TopText> */}
             </TopTexts>
-            <TopButton type="filled">
+           <Link to="/orders"> <TopButton type="filled">
               YOUR ORDERS
-            </TopButton>
+            </TopButton></Link>
           </Top>
-          <Bottom>
-            <Info>
+          <Bottom id="capture" >
+            <Info >
               {cart.products?.map(
                 (product, index) => (
                   <div key={index}>
@@ -314,7 +327,7 @@ const Cart = () => {
                 ),
               )}
             </Info>
-            <Summary>
+            <Summary >
               <SummaryTitle>
                 ORDER SUMMARY
               </SummaryTitle>
@@ -361,11 +374,14 @@ const Cart = () => {
                 amount={cart.total * 100}
                 token={onToken}
                 stripeKey={KEY}
-              >
-                <Button>CHECKOUT NOW</Button>
+              > <Button>CHECKOUT NOW</Button>
+               
               </StripeCheckout>
+             
+              <Button style={{margin:"20px 0"}} onClick={e=>_exportPdf()}>Export PDF FOR THIS CART</Button>
             </Summary>
           </Bottom>
+         
         </Wrapper>
       </Layout>
     </Container>

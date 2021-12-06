@@ -85,8 +85,9 @@ exports.getOrder = async (req, res) => {
 };
 
 exports.getAllOrders = async (req, res) => {
+  const query = req.query.new;
   try {
-    const orders = await Order.find();
+    const orders = query ?  await Order.find().sort({_id: -1}).limit(5) : await Order.find();
     res.status(200).json({
       success: true,
       message: "Get all orders successfull",

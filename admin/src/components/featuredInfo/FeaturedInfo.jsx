@@ -49,9 +49,9 @@ export default function FeaturedInfo() {
             100,
         );
         setSalePercent(
-          (response.data.income[1].quantity *
+          (response.data.income[2].quantity *
             100) /
-            response.data.income[0].quantity -
+            response.data.income[1].quantity -
             100,
         );
       } catch (error) {
@@ -68,7 +68,7 @@ export default function FeaturedInfo() {
     <div className="featured">
       <div className="featuredItem">
         <span className="featuredTitle">
-          Money
+          Revenue
         </span>
         <div className="featuredMoneyContainer">
           <span className="featuredMoney">
@@ -93,7 +93,7 @@ export default function FeaturedInfo() {
         </span>
         <div className="featuredMoneyContainer">
           <span className="featuredMoney">
-            {income[1]?.quantity}
+            {income[2]?.quantity}
           </span>
           <span className="featuredMoneyRate">
             {Math.floor(salePercent)} %

@@ -46,6 +46,7 @@ export default function Product() {
     price: product.price,
     inStock: product.inStock,
   });
+  const [productSale,setProductSale] = useState(0)
   const [sizes, setSizes] = useState(
     product.size,
   );
@@ -76,6 +77,17 @@ export default function Product() {
     ],
     [],
   );
+  useEffect(()=>{
+    const getSale = async()=>{
+      try {
+          const response = await userRequest.get(`/products/getproductsale/${productId}`)
+        setProductSale(response.data.count)
+        } catch (error) {
+        console.log(error)
+      }
+    }
+    getSale()
+  },[])
   useEffect(() => {
     const getStats = async () => {
       try {
@@ -240,7 +252,7 @@ export default function Product() {
               <span className="productInfoKey">
                 Sales:
               </span>
-              <span className="productInfoValue"></span>
+              <span className="productInfoValue">{productSale}</span>
             </div>
 
             <div className="productInfoItem">
