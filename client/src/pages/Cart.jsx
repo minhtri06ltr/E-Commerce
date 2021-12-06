@@ -254,6 +254,9 @@ const Cart = () => {
       }
       changeQuantity(dispatch,data)
   }
+  if(cart.products !=[]){
+    console.log(cart.products.length)
+  }
   return (
     <Container >
       <Layout>
@@ -277,7 +280,7 @@ const Cart = () => {
           </Top>
           <Bottom id="capture" >
             <Info >
-              {cart.products != [] && user.currentUser ? cart.products.map(
+              {cart.products.length != 0 && user.currentUser ? cart.products.map(
                 (product, index) => (
                   <div key={index}>
                     <ProductItem>

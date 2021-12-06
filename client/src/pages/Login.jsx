@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { mobile } from "../responsive";
+import { galaxy, mobile } from "../responsive";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -14,12 +14,13 @@ const Container = styled.div`
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("https://i.redd.it/5m2flzftc3e71.jpg")
+    url("https://images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
       center;
   background-size: center;
   display: flex;
   align-items: center;
   justify-content: center;
+  
 `;
 const Wrapper = styled.div`
   padding: 20px;
@@ -56,6 +57,8 @@ const Button = styled.button`
 `;
 const Redirect = styled.span`
   cursor: pointer;
+  display:block;
+  text-align:center;
   margin: 5px auto;
   font-size: 12px;
 `;

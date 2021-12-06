@@ -32,7 +32,8 @@ const Success = () => {
                 color:item.color,
                 size:item.size,
                 price:item.price,
-                img:item.img
+                img:item.img,
+                title:item.title
 
               }),
             ),

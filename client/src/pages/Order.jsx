@@ -1,6 +1,6 @@
 import Layout from "../components/layouts/Layout"
 import {useEffect,useState} from 'react'
-  import { fold,mobile } from "../responsive";
+  import { fold,mobile,galaxy } from "../responsive";
   import styled from 'styled-components'
 
 import { userRequest } from "../helper/requestMethods";
@@ -8,7 +8,9 @@ import { useSelector } from "react-redux";
 
 
 const ProductName = styled.span``;
-const ProductId = styled.span``;
+const ProductId = styled.span`
+${fold({ display: "none" })}
+`;
 const ProductColor = styled.div`
   width: 20px;
   height: 20px;
@@ -23,8 +25,9 @@ const PriceDetail = styled.div`
  
   ${mobile({
     justifyContent: "center",
-    margin: "20px",
-  })}
+    padding:"14px",
+  })};
+
 `;
 const ProductQuantityContainer = styled.div`
   display: flex;
@@ -38,7 +41,13 @@ height:218px;
   margin:10px 0 ;
   ${mobile({
     flexDirection: "column",
+    marginTop:"54px",
+    alignItems:"flex-end"
   })}
+ 
+`;
+const Wrapper = styled.div`
+${galaxy({ margin:"20px 0",display:"block" })}
 `;
 const ProductQuantity = styled.div`
   width: 30px;
@@ -69,13 +78,18 @@ display: block;
     font-weight: 700;
 
 `;
-
+const Container = styled.div`
+${galaxy({ width: "83%",margin:"80px 0 " })}
+`;
 const ProductDetail = styled.div`
- 
+${fold({ flexDirection: "column" })}
   display: flex;
+  ${galaxy({ flexDirection: "column",display:"contents" })}
 `;
 const Image = styled.img`
   width: 200px;
+  height:200px;
+  ${galaxy({ margin:"auto" })}
 `;
 const Details = styled.div`
   padding: 20px;
@@ -127,8 +141,8 @@ const Order = () => {
     return (
         <Layout>
          { orders != [] && user.currentUser ? orders.map((item,index)=>(
-           <div key ={index}>
-            <div> 
+           <Container key ={index}>
+            <Container> 
               <AddressTitle > ADDRESS({index})</AddressTitle>
             
                 <AddressInfo >
@@ -143,11 +157,11 @@ const Order = () => {
            <OrderInfoItem >Amout: {item.amount}$</OrderInfoItem>
             <OrderInfoItem>Status: {item.status}</OrderInfoItem>
            </OrderInfo>
-             </div>
-            <div>
+             </Container>
+            <Container>
            {item.products?.map(
                 (product, index) => (
-                  <div key={index}>
+                  <Wrapper key={index} >
                     
                     <ProductItem>
                       <ProductDetail>
@@ -189,11 +203,11 @@ const Order = () => {
                    
                     </ProductItem>
                    
-                  </div>
+                  </Wrapper>
                 ),
-              )}</div>
+              )}</Container>
                <Hr style={{margin:"20px 0 "}} />
-           </div>
+           </Container>
          ))
         : (<>
         <Message>YOU DONT HAVE ANY ORDER YET</Message>

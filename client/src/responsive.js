@@ -14,3 +14,10 @@ export const fold = (props) => {
     }
   `;
 };
+export const galaxy = (props) => {
+  return css`
+    @media only screen and (max-width: 365px) {
+      ${props}
+    }
+  `;
+};

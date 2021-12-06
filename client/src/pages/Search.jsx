@@ -1,6 +1,6 @@
 import Layout from "../components/layouts/Layout"
 import {useEffect,useState} from 'react'
-  import { fold,mobile } from "../responsive";
+  import { fold,mobile,galaxy } from "../responsive";
   import styled from 'styled-components'
 import { SearchOutlined } from "@mui/icons-material";
 import { publicRequest } from "../helper/requestMethods";
@@ -11,6 +11,7 @@ const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  ${galaxy({ width: "83%" })}
 `;
 const SearchContainer = styled.div`
   border: 0.5px solid lightgray;
@@ -19,6 +20,7 @@ const SearchContainer = styled.div`
   margin-left: 25px;
 justify-content:center;
   ${fold({ marginLeft: "0px" })}
+  ${galaxy({ width: "68%" })}
 `;
 const Input = styled.input`
   border: none;

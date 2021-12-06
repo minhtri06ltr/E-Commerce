@@ -7,12 +7,13 @@ import {
   Twitter,
   MailOutline,
 } from "@mui/icons-material";
-import { mobile } from "../../responsive";
+import { mobile,galaxy } from "../../responsive";
 import styled from "styled-components";
 
 const Container = styled.div`
   display: flex;
   ${mobile({ flexDirection: "column" })}
+  
 `;
 const Left = styled.div`
   flex: 1;
