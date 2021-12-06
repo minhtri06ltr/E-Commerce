@@ -157,6 +157,19 @@ const SummaryItem = styled.div`
   font-size: ${(props) =>
     props.type === "total" && "24px"};
 `;
+const Empty = styled.img`
+margin: 0 auto;
+    display: block;
+    width: 40%;
+`;
+const Message = styled.span`
+display: block;
+    text-align: center;
+    font-size: 30px;
+  margin:10px 0 ;
+    font-weight: 700;
+
+`;
 const SummaryItemText = styled.span``;
 const SummaryItemPrice = styled.span``;
 const Button = styled.button`
@@ -178,6 +191,7 @@ const _exportPdf = () => {
 
 }
 const Cart = () => {
+  const user = useSelector(state=>state.user)
   const KEY =
     "pk_test_51K0enCDzr6LNQ8Fc5SlrYCUSp2ORkjw2rLdlXP2j3UtWn2yz6BzSLa5i0fToYH7O6zyajt6291A8LMCJ1gsB9AQ100uMO2vlUq";
   const cart = useSelector((state) => state.cart);
@@ -263,7 +277,7 @@ const Cart = () => {
           </Top>
           <Bottom id="capture" >
             <Info >
-              {cart.products?.map(
+              {cart.products != [] && user.currentUser ? cart.products.map(
                 (product, index) => (
                   <div key={index}>
                     <ProductItem>
@@ -325,7 +339,10 @@ const Cart = () => {
                     <Hr />
                   </div>
                 ),
-              )}
+              ) : (<>
+              <Message>YOU DONT HAVE ANY PRODUCT IN CART</Message>
+              <Empty src="https://measy.org/assets/images/bitmaps/no_orders.svg"/>
+              </>)}
             </Info>
             <Summary >
               <SummaryTitle>

@@ -28,7 +28,12 @@ const Success = () => {
             products: cart.products.map(
               (item) => ({
                 productId: item._id,
-                quantity: item._quantity,
+                quantity: item.quantity,
+                color:item.color,
+                size:item.size,
+                price:item.price,
+                img:item.img
+
               }),
             ),
             amount: cart.total,
@@ -68,6 +73,17 @@ const Success = () => {
       >
         Go to Homepage
       </button>
+      <button
+        style={{ padding: 10, marginTop: 20 }}
+        onClick={e=>{
+          e.preventDefault();
+          history.push('/orders')
+
+        }}
+      >
+        Check your order
+      </button>
+
     </div>
   );
 };

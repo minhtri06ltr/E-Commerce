@@ -47,7 +47,7 @@ router.get(
   getOrderStats,
 );
 router.get(
-  "/getorder",
+  "/getorder/:id",
   verifyToken,
   getUserOrder,
 );

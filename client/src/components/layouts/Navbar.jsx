@@ -104,6 +104,7 @@ const Navbar = () => {
         <Left>
           <Language>EN</Language>
         <Link to='/search'>  <MenuItem>ALL PRODUCTS</MenuItem></Link>
+        <Link to='/orders'>  <MenuItem>YOUR ORDER</MenuItem></Link>
         </Left>
         <Center>
           <Link to="/">

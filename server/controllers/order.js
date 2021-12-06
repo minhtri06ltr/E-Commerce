@@ -163,10 +163,11 @@ exports.getOrderStats = async (req, res) => {
 };
 
 exports.getUserOrder = async (req, res) => {
+  console.log(req.params.id)
   try {
     const findOrder = await Order.find({
-      user: req.user.id,
-    });
+      userId:req.params.id,
+    })
     res.status(200).json({
       success: true,
       message: "Create order successfull",
