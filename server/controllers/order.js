@@ -66,8 +66,8 @@ exports.getOrder = async (req, res) => {
   try {
     //get all user's orders
     const orders = await Order.find({
-      userId: req.params.userId,
-    });
+      _id: req.params.orderId,
+    }).populate("userId","username");
 
     res.status(200).json({
       success: true,

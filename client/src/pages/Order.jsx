@@ -140,7 +140,7 @@ const Order = () => {
     
     return (
         <Layout>
-         { orders != [] && user.currentUser ? orders.map((item,index)=>(
+         { orders.length !==0 && user.currentUser ? orders.map((item,index)=>(
            <Container key ={index}>
             <Container> 
               <AddressTitle > ADDRESS({index})</AddressTitle>

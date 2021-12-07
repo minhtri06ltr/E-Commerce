@@ -20,6 +20,7 @@ const userSlice = createSlice({
       state.error = true;
     },
     logoutSuccess:(state)=>{
+      localStorage.clear()
       state.currentUser = null;
     }
   },
