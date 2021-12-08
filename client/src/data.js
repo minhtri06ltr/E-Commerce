@@ -2,10 +2,10 @@ export const sliderItems = [
   {
     
       id: 1,
-      img: "https://o.remove.bg/downloads/770b774c-367e-41d7-be9e-872f52b38fb3/785e99e1b33538138f80135ad9cd92b9-removebg-preview.png",
+      img: "https://firebasestorage.googleapis.com/v0/b/holo-83a3a.appspot.com/o/0425880314995411707b388f67bb5ea8_adobespark%20(1).png?alt=media&token=ee11bf14-101b-41b0-87e3-db0421191069",
       title: "SPRING FASHION",
       description: "NO MATTER HOW LONG THE WINTER, SPRING IS SURE TO FOLLOW!.",
-      bg: "f5fafd",
+      bg: "9ac0ac",
       cat:"spring"
     },
     {
@@ -26,10 +26,10 @@ export const sliderItems = [
     },
     {
       id: 4,
-      img: "https://o.remove.bg/downloads/49ae6850-8ff0-41f8-9d44-ac0ae65ab398/original-removebg-preview.png",
+      img: "https://firebasestorage.googleapis.com/v0/b/holo-83a3a.appspot.com/o/97f05a951cd2ba3ada1e00954d542e95-removebg.png?alt=media&token=df16bc20-5ba0-45a6-bbee-757d519c97a7",
       title: "WARM UP THE WINTER",
       description: "YOU ARE WALKING IN THE WINTER WONDERLAND.",
-      bg: "9cb0bc",
+      bg: "f5fafd",
       cat:"winter"
     },
 ];

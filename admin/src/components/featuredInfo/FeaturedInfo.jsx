@@ -120,10 +120,10 @@ export default function FeaturedInfo() {
           }}
         >
           <span className="featuredMoney">
-            <Person /> {products.length}
+            <Store /> {products.length}
           </span>
           <span className="featuredMoney">
-            <Store />
+            <Person />
             {users.length}
           </span>
           <span className="featuredMoney">

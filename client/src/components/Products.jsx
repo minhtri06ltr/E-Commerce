@@ -57,7 +57,7 @@ const Products = ({
         //get all previous filtered product
         [...prev].sort(
           //compare two product -> return if first one is greater -> render first
-          (a, b) => a.createdAt - b.createdAt,
+          (a, b) => new Date(a.createdAt) - new Date(b.createdAt),
         ),
       );
     } else if (sort === "asc") {
@@ -75,6 +75,7 @@ const Products = ({
     }
   }, [sort]);
   //function
+  console.log(filteredProducts)
 
   return (
     <Container>

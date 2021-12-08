@@ -129,7 +129,7 @@ const Order = () => {
    useEffect(()=>{
     const getOrder = async ()=>{  try {
       let id = user.currentUser._id
-        const response = await userRequest.get(`/orders/getorder/${id}`)
+        const response = await userRequest.get(`/orders/getuserorder/${id}`)
         setOrders(response.data.findOrder);
       } catch (error) {
         console.log(error)

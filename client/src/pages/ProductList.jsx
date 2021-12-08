@@ -60,6 +60,7 @@ const ProductList = () => {
       [e.target.name]: value,
     });
   };
+  
   return (
     <Container>
       <Layout>
@@ -85,6 +86,14 @@ const ProductList = () => {
               <Option>Purple</Option>
               <Option>Yellow</Option>
               <Option>Green</Option>
+              <Option>Organe</Option>
+              <Option>White</Option>
+              <Option>Pink</Option>
+              <Option>Violet</Option>
+              <Option>Gray</Option>
+              <Option>Black</Option>
+             
+              <Option>Brown</Option>
             </Select>
             <Select
               defaultValue="chooseSize"
@@ -99,6 +108,8 @@ const ProductList = () => {
               <Option>M</Option>
               <Option>L</Option>
               <Option>XL</Option>
+              <Option>XXL</Option>
+              <Option>XXXL</Option>
             </Select>
           </Filter>
           <Filter>

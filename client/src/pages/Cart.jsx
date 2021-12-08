@@ -183,9 +183,9 @@ const _exportPdf = () => {
 
   html2canvas(document.querySelector("#capture")).then(canvas => {
      document.body.appendChild(canvas);  // if you want see your screenshot in body.
-     const imgData = canvas.toDataURL('image/png');
+     var imgData = canvas.toDataURL("image/jpeg", 1.0);
      const pdf = new jsPDF('p', 'pt', 'a4', false);
-     pdf.addImage(imgData, 'PNG', 0, 0, 600, 0, undefined, false);
+     pdf.addImage(imgData, 'JPEG', 0, 0, 600, 0, undefined, false);
      pdf.save("YouCart.pdf"); 
  });
 
@@ -383,7 +383,7 @@ const Cart = () => {
                   $ {cart.total}
                 </SummaryItemPrice>
               </SummaryItem>
-              <StripeCheckout
+          {user.currentUser && (   <> <StripeCheckout
                 name="HOLO SHOP"
                 //logo
                 image="https://i.redd.it/5m2flzftc3e71.jpg"
@@ -399,6 +399,8 @@ const Cart = () => {
               </StripeCheckout>
              
               <Button style={{margin:"20px 0"}} onClick={e=>_exportPdf()}>Export PDF FOR THIS CART</Button>
+              </>
+              )}
             </Summary>
           </Bottom>
          

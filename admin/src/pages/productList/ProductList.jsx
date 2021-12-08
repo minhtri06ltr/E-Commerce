@@ -116,6 +116,8 @@ export default function ProductList() {
   ];
 
   return (
+    <>
+  
     <div className="productList">
       <DataGrid
         rows={products}
@@ -129,5 +131,13 @@ export default function ProductList() {
         }}
       />
     </div>
+    <Link
+              to="/newproduct"
+            >
+              <button className="productListEdit">
+                Create
+              </button>
+            </Link>
+    </>
   );
 }

@@ -16,6 +16,7 @@ const Container = styled.div`
   height: 60px;
   ${mobile({ height: "50px" })}
   ${fold({ height: "70px" })}
+  ${galaxy({width: "110%"})}
 `;
 const Wrapper = styled.div`
   padding: 10px 20px;
@@ -39,8 +40,9 @@ const Right = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  ${mobile({ justifyContent: "center", flex: 2 })}
+  ${mobile({ justifyContent: "center", flex: 1 })}
   ${fold({ flexDirection: "column" })}
+  ${galaxy({flex: 1})}
   
 `;
 const Language = styled.span`
@@ -53,6 +55,7 @@ const Logo = styled.h1`
   font-weight: bold;
   ${mobile({ fontSize: "24px" })}
   ${fold({ marginLeft: "10px" })}
+  ${galaxy({marginLeft:"25px"})}
 `;
 
 const MenuItem = styled.div`
@@ -71,6 +74,7 @@ margin-left: 25px;
 ${mobile({
   fontSize: "12px",
   marginLeft: "10px",
+  display:"none"
 })}
 ${fold({ display: "none" })}
 ${galaxy({ display: "none" })}
