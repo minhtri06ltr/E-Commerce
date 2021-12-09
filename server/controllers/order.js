@@ -106,51 +106,36 @@ exports.getAllOrders = async (req, res) => {
 exports.getOrderStats = async (req, res) => {
   const productId = req.query.pid;
   const date = new Date();
-  //example: if tody is month = 10 => last month = 9 => previous month = 8
-  const lastMonth = new Date(
-    date.setMonth(date.getMonth() - 1),
-  );
-  const previousMonth = new Date(
-    new Date().setMonth(lastMonth.getMonth() - 1),
-  );
+  const lastMonth = new Date(date.setMonth(date.getMonth() - 1));
+  const previousMonth = new Date(new Date().setMonth(lastMonth.getMonth() - 1));
 
   try {
     const income = await Order.aggregate([
       {
-        //loop and match order has createAt
-        //less than today and greater than previous month
         $match: {
-          //last 2 month from today
           createdAt: { $gte: previousMonth },
-          //if there are pid query create new condition
           ...(productId && {
-            products: {
-              $elemMatch: { productId },
-            },
+            products: { $elemMatch: { productId } },
           }),
         },
       },
-
       {
         $project: {
           month: { $month: "$createdAt" },
-          //get amount
           sales: "$amount",
         },
       },
       {
-        //group data
         $group: {
           _id: "$month",
           total: { $sum: "$sales" },
-          quantity: { $sum: 1 },
         },
       },
     ]);
+    console.log(income)
     res.status(200).json({
-      success: true,
-      message: "get order stats successfull",
-      income,
+      success:true,
+      income
     });
   } catch (error) {
     console.log(error);

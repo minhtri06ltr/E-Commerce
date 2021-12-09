@@ -79,7 +79,8 @@ display: block;
 
 `;
 const Container = styled.div`
-${galaxy({ width: "83%",margin:"80px 0 " })}
+${galaxy({ width: "105%",margin:"80px 0 " })}
+${fold({ width: "105%", })}
 `;
 const ProductDetail = styled.div`
 ${fold({ flexDirection: "column" })}
@@ -96,6 +97,8 @@ const Details = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  alignItems: "center"
+ 
 `;
 const AddressTitle  = styled.span`
 display: block;

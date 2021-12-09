@@ -16,7 +16,7 @@ const cartSlice = createSlice({
     addProductToCartSuccess: (state, action) => {
       state.products.push(action.payload[0]);
       let total = 0;
-
+    
       state.products.map((item, key) => {
         total =
           total + item.price * item.quantity;

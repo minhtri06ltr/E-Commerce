@@ -19,7 +19,8 @@ const SearchContainer = styled.div`
   align-items: center;
   margin-left: 25px;
 justify-content:center;
-  ${fold({ marginLeft: "0px" })}
+  ${fold({     margin: "10px 13px",
+    width: "100%", })}
   ${galaxy({ width: "68%" })}
 `;
 const Input = styled.input`

@@ -5,7 +5,7 @@ import {
 } from "react-redux";
 import styled from "styled-components";
 import Layout from "../components/layouts/Layout";
-import { mobile } from "../responsive";
+import { fold, mobile } from "../responsive";
 import StripeCheckout from "react-stripe-checkout";
 import { useEffect, useState } from "react";
 
@@ -19,11 +19,16 @@ import {
 } from "../redux/apiRequest";
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-const Container = styled.div``;
+const Container = styled.div`
+
+`;
 const Wrapper = styled.div`
   padding: 20px;
   ${mobile({
     padding: "0",
+  })}
+  ${fold({
+    width:"110%"
   })}
 `;
 const Title = styled.h1`

@@ -93,7 +93,7 @@ export default function FeaturedInfo() {
         </span>
         <div className="featuredMoneyContainer">
           <span className="featuredMoney">
-            {income[0]?.quantity}
+            {income[1]?.quantity}
           </span>
           <span className="featuredMoneyRate">
             {Math.floor(salePercent)} %
