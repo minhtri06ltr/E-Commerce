@@ -9,15 +9,17 @@ export default function WidgetLg() {
     const getOrders = async () => {
       try {
         const response = await userRequest.get(
-          "orders",
+          "orders?new=true",
         );
-        setOrders(response.data.orders);
+        setOrders(response.data.orders.sort((a,b)=> new Date(b.createdAt) - new Date(a.createdAt)));
       } catch (error) {
         console.log(error);
       }
     };
     getOrders();
+   
   }, []);
+ console.log(orders)
   const Button = ({ type }) => {
     return (
       <button

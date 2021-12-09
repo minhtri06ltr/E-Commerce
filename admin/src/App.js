@@ -16,7 +16,9 @@ import NewProduct from "./pages/newProduct/NewProduct";
 import Login from "./pages/login/Login";
 import { useSelector } from "react-redux";
 import OrderList from "./pages/orderList/OrderList";
+
 import { Redirect } from "react-router-dom";
+import Trigger from "./pages/order/Trigger";
 function App() {
   const user = useSelector((state) => state.user);
 
@@ -57,9 +59,13 @@ function App() {
               <Route path="/newproduct">
                 <NewProduct />
               </Route>
+              <Route path="/order/getorder/:orderId">
+                <Trigger />
+              </Route>
               <Route path="/orders">
                 <OrderList />
               </Route>
+            
             </div>
           </>
         ) : (

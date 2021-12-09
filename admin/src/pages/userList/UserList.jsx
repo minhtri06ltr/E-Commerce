@@ -66,7 +66,7 @@ export default function UserList() {
       width: 230,
     },
     {
-      field: "format",
+      field: "createdAt",
       headerName: "Created",
       width: 105,
     },

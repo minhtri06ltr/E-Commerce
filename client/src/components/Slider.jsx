@@ -2,7 +2,7 @@ import {
   KeyboardArrowLeftOutlined,
   KeyboardArrowRightOutlined,
 } from "@mui/icons-material";
-import { useState } from "react";
+import { useState,useEffect,useRef } from "react";
 import styled from "styled-components";
 import { sliderItems } from "../data";
 import { mobile } from "../responsive";
@@ -85,16 +85,39 @@ const Slider = () => {
   const handleClick = (direction) => {
     if (direction === "left") {
       setSlideValue(
-        slideValue > 0 ? slideValue - 1 : 2,
+        slideValue > 0 ? slideValue - 1 : 3,
       );
     } else {
       setSlideValue(
-        slideValue < 2 ? slideValue + 1 : 0,
+        slideValue < 3 ? slideValue + 1 : 0,
       );
     }
   };
+  const timeoutRef = useRef(null);
 
-  return (
+  function resetTimeout() {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+  }
+
+  useEffect(() => {
+    resetTimeout();
+    timeoutRef.current = setTimeout(
+      () =>
+        setSlideValue((prevIndex) =>
+          prevIndex === 4 - 1 ? 0 : prevIndex + 1
+        ),
+      4000
+    );
+
+    return () => {
+      resetTimeout();
+    };
+  }, [slideValue]);
+
+
+return (
     <Container>
       <Arrow
         direction="left"
@@ -113,7 +136,9 @@ const Slider = () => {
               <Description>
                 {item.description}
               </Description>
+              <Link to={`/products/${item.cat}`}>
               <Button>SHOW MORE</Button>
+              </Link>
             </InfoContainer>
           </Slide>
         ))}

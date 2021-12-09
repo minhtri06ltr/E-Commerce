@@ -31,6 +31,7 @@ const userListSlice = createSlice({
         ),
         1,
       );
+      alert("Delete user successfull")
     },
     deleteUserFailure: (state) => {
       state.isFetching = true;
@@ -48,7 +49,7 @@ const userListSlice = createSlice({
             item._id === action.payload.id,
         )
       ] = action.payload.updatedUser;
-    },
+   alert("Update user successfull") },
     updateUserFailure: (state) => {
       state.isFetching = true;
       state.error = true;
@@ -60,6 +61,7 @@ const userListSlice = createSlice({
       state.isFetching = false;
 
       state.users.push(action.payload);
+      alert("Add user successfull")
     },
     addUserFailure: (state) => {
       state.isFetching = true;

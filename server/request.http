@@ -11,7 +11,7 @@ POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
 {
-    "username":"vana",
+    "username":"admin",
     "password":"123123"
 }
 
@@ -169,8 +169,12 @@ GET  http://localhost:5000/api/products
 
 ###
 GET  http://localhost:5000/api/orders/getorder
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTllZTdmMWFhYTJmNGRhY2I2OTVmMSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2Mzg3MDMwMjgsImV4cCI6MTYzODk2MjIyOH0.ANL-zlTmrlYJZ4oTgL4Z8zB99XsIgQ9lOkk_ipJvUF8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYWQ4YmZlNGU5MmJhNzUxOWYyZDFiMiIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2Mzg3NjUzNTAsImV4cCI6MTYzOTAyNDU1MH0.RcMOrvK91ueUFSHKgUVDb2cVUFSHi7JL7Xd2axR8a0Q
 
 ###
 GET   http://localhost:5000/api/products/getproductsale/61a3438152c4aeb5f94fbc86
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTIxZTJmMmU4YWFmYWRjZTkzMDMzYiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODcwMzY5NiwiZXhwIjoxNjM4OTYyODk2fQ.qOuR7Nvt1k8gpDX3k90Hb3HAQ7olSqDMB1hSHeV1sNk
+
+###
+GET   http://localhost:5000/api/orders/getorder/61a4f5d6401f75fa2e6e1311
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTIxZTJmMmU4YWFmYWRjZTkzMDMzYiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODg2MjcyMywiZXhwIjoxNjM5MTIxOTIzfQ.bS2Vcwp60Xoy8tSwbvheqV3hEhZ3Kjo0_0O9iNWLop8

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { mobile } from "../responsive";
+import { mobile,galaxy } from "../responsive";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import {
@@ -15,12 +15,13 @@ const Container = styled.div`
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("https://i.redd.it/5m2flzftc3e71.jpg")
+    url("https://images.pexels.com/photos/6984661/pexels-photo-6984661.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
       center;
   background-size: center;
   display: flex;
   align-items: center;
   justify-content: center;
+ 
 `;
 const Wrapper = styled.div`
   padding: 20px;

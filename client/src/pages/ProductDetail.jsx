@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Layout from "../components/layouts/Layout";
 import { Remove, Add } from "@mui/icons-material";
-import { mobile } from "../responsive";
+import { fold, mobile } from "../responsive";
 import { useLocation } from "react-router";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -22,9 +22,9 @@ const ImgContainer = styled.div`
   flex: 1;
 `;
 const Image = styled.img`
-  width: 100%;
-  object-fit: cover;
-  height: 90vh;
+width: 100%;
+object-fit: contain;
+height: 120vh;
   ${mobile({
     height: "40vh ",
   })}
@@ -59,10 +59,17 @@ const FilterContainer = styled.div`
   margin: 30px 0;
   display: flex;
   justify-content: space-around;
+  ${fold({
+   flexDirection:"column",
+   alignItems:"center",
+  })}
 `;
 const Filter = styled.div`
   display: flex;
   align-items: center;
+  ${fold({
+    margin:"10px auto"
+   })}
 `;
 const FilterTitle = styled.span`
   font-size: 20px;

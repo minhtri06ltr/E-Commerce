@@ -10,6 +10,7 @@ import app from "../../firebase";
 import { addProduct } from "../../redux/apiRequest";
 import { useDispatch } from "react-redux";
 export default function NewProduct() {
+
   const dispatch = useDispatch();
   const [inputs, setInputs] = useState({});
   const [file, setFile] = useState(null);
@@ -37,7 +38,10 @@ export default function NewProduct() {
   };
   const handleClick = (e) => {
     e.preventDefault();
-
+    if(sizes.length === 0 || colors === 0 || file === null ||categories.length ===0 || inputs.title === "" || inputs.description === "" || inputs.price ==="" ){
+      alert("Please check input again");
+      return;
+    }
     //set unique to filename
     const fileName =
       new Date().getTime() + file.name;
@@ -95,7 +99,9 @@ export default function NewProduct() {
         });
       },
     );
+    
   };
+  
   return (
     <div className="newProduct">
       <h1 className="addProductTitle">
@@ -179,6 +185,7 @@ export default function NewProduct() {
         >
           Create
         </button>
+      
       </form>
     </div>
   );

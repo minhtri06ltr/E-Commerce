@@ -30,8 +30,8 @@ router.delete(
 );
 //anyone can get all user's orders
 router.get(
-  "/find/:userId",
-  verifyTokenAndAuthentization,
+  "/getorder/:orderId",
+  verifyTokenAndAdmin,
   getOrder,
 );
 //only admin can get all orders
@@ -47,7 +47,7 @@ router.get(
   getOrderStats,
 );
 router.get(
-  "/getorder",
+  "/getuserorder/:id",
   verifyToken,
   getUserOrder,
 );

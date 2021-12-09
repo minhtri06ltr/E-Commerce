@@ -61,48 +61,59 @@ exports.register = async (req, res) => {
 //LOGIN
 
 exports.login = async (req, res) => {
+  if(!req.body.username || !req.body.password){
+      res.status(400).json({
+        message:"Missing input",
+        success:false
+      })
+  }
   try {
     const user = await User.findOne({
       username: req.body.username,
     });
 
     //check username
-    !user &&
-      res.status(401).json({
-        success: false,
-        message: "Wrong user name or password",
+ if(user === null){
+ 
+  res.status(401).json({
+    success: false,
+    message: "Wrong user name or password",
+  });
+ }
+   
+    else{
+      const hasedPassword = CryptoJS.AES.decrypt(
+        user.password,
+        process.env.HASH_KEY,
+      );
+  
+      const DatabasePassword =
+        hasedPassword.toString(CryptoJS.enc.Utf8);
+      //check password
+      DatabasePassword !== req.body.password &&
+        res.status(401).json({
+          success: false,
+          message: "Wrong user name or password",
+        });
+  
+      //success
+      const accessToken = jwt.sign(
+        {
+          //store in token
+          id: user._id,
+          isAdmin: user.isAdmin,
+        },
+        process.env.JWT_KEY,
+        { expiresIn: "3d" },
+      );
+      const { password, ...others } = user._doc;
+      res.status(200).json({
+        success: true,
+        message: "Login successfull",
+        ...others,
+        accessToken,
       });
-    const hasedPassword = CryptoJS.AES.decrypt(
-      user.password,
-      process.env.HASH_KEY,
-    );
-
-    const DatabasePassword =
-      hasedPassword.toString(CryptoJS.enc.Utf8);
-    //check password
-    DatabasePassword !== req.body.password &&
-      res.status(401).json({
-        success: false,
-        message: "Wrong user name or password",
-      });
-
-    //success
-    const accessToken = jwt.sign(
-      {
-        //store in token
-        id: user._id,
-        isAdmin: user.isAdmin,
-      },
-      process.env.JWT_KEY,
-      { expiresIn: "3d" },
-    );
-    const { password, ...others } = user._doc;
-    res.status(200).json({
-      success: true,
-      message: "Login successfull",
-      ...others,
-      accessToken,
-    });
+    }
   } catch (error) {
     console.log(error);
     res.status(500).json({

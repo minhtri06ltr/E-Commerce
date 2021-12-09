@@ -68,7 +68,7 @@ export default function FeaturedInfo() {
     <div className="featured">
       <div className="featuredItem">
         <span className="featuredTitle">
-          Money
+          Revenue
         </span>
         <div className="featuredMoneyContainer">
           <span className="featuredMoney">
@@ -120,10 +120,10 @@ export default function FeaturedInfo() {
           }}
         >
           <span className="featuredMoney">
-            <Person /> {products.length}
+            <Store /> {products.length}
           </span>
           <span className="featuredMoney">
-            <Store />
+            <Person />
             {users.length}
           </span>
           <span className="featuredMoney">

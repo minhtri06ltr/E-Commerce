@@ -21,19 +21,6 @@ import {
   publicRequest,
   userRequest,
 } from "../helper/requestMethods";
-export const login = async (dispatch, user) => {
-  dispatch(loginRequest());
-  try {
-    const response = await publicRequest.post(
-      "/auth/login",
-      user,
-    );
-    dispatch(loginSuccess(response.data));
-  } catch (error) {
-    dispatch(loginFailure());
-  }
-};
-
 export const getCartItems = async (dispatch) => {
   dispatch(getUserCartRequest());
   try {
@@ -49,6 +36,21 @@ export const getCartItems = async (dispatch) => {
     dispatch(getUserCartFailure());
   }
 };
+export const login = async (dispatch, user) => {
+  dispatch(loginRequest());
+  try {
+    const response = await publicRequest.post(
+      "/auth/login",
+      user,
+    );
+    dispatch(loginSuccess(response.data));
+    getCartItems(dispatch)
+  } catch (error) {
+    dispatch(loginFailure());
+  }
+};
+
+
 export const register = async (
   dispatch,
   user,

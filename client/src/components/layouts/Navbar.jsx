@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import {
-  Search,
+ 
   ShoppingCartOutlined,
 } from "@mui/icons-material";
 import { Badge } from "@mui/material";
-import { mobile, fold } from "../../responsive";
+import { mobile, fold,galaxy } from "../../responsive";
 import { Link } from "react-router-dom";
 import {
   useDispatch,
@@ -16,6 +16,7 @@ const Container = styled.div`
   height: 60px;
   ${mobile({ height: "50px" })}
   ${fold({ height: "70px" })}
+  ${galaxy({width: "110%"})}
 `;
 const Wrapper = styled.div`
   padding: 10px 20px;
@@ -39,8 +40,10 @@ const Right = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  ${mobile({ justifyContent: "center", flex: 2 })}
+  ${mobile({ justifyContent: "center", flex: 1 })}
   ${fold({ flexDirection: "column" })}
+  ${galaxy({flex: 1})}
+  
 `;
 const Language = styled.span`
   font-size: 14px;
@@ -52,6 +55,7 @@ const Logo = styled.h1`
   font-weight: bold;
   ${mobile({ fontSize: "24px" })}
   ${fold({ marginLeft: "10px" })}
+  ${galaxy({marginLeft:"25px"})}
 `;
 
 const MenuItem = styled.div`
@@ -63,6 +67,18 @@ const MenuItem = styled.div`
     marginLeft: "10px",
   })}
 `;
+const MenuItemGreeting = styled.div`
+font-size: 14px;
+cursor: pointer;
+margin-left: 25px;
+${mobile({
+  fontSize: "12px",
+  marginLeft: "10px",
+  display:"none"
+})}
+${fold({ display: "none" })}
+${galaxy({ display: "none" })}
+`
 
 //render component
 const Navbar = () => {
@@ -76,10 +92,10 @@ const Navbar = () => {
   const login = () => {
     return (
       <>
-        <MenuItem>
+        <MenuItemGreeting >
           WELCOME{" "}
           {user.currentUser.username.toUpperCase()}
-        </MenuItem>
+        </MenuItemGreeting>
         <MenuItem onClick={userLogout}>
           LOGOUT
         </MenuItem>
@@ -104,6 +120,7 @@ const Navbar = () => {
         <Left>
           <Language>EN</Language>
         <Link to='/search'>  <MenuItem>ALL PRODUCTS</MenuItem></Link>
+        <Link to='/orders'>  <MenuItem>YOUR ORDER</MenuItem></Link>
         </Left>
         <Center>
           <Link to="/">

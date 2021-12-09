@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { mobile } from "../../responsive";
+import { mobile,fold, galaxy } from "../../responsive";
 import { Link } from "react-router-dom";
 const Container = styled.div`
   flex: 1;
@@ -13,6 +13,8 @@ const Image = styled.img`
   height: 100%;
   object-fit: cover;
   ${mobile({ width: "30vh" })}
+  ${fold({ width: "43vh" })}
+  ${galaxy({ width: "60vh" })}
 `;
 const Title = styled.h1`
   color: white;

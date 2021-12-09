@@ -3,15 +3,17 @@ import { useState } from "react";
 import styled from "styled-components";
 import Layout from "../components/layouts/Layout";
 import Products from "../components/Products";
-import { mobile } from "../responsive";
+import { mobile ,galaxy} from "../responsive";
 const Container = styled.div``;
 const Title = styled.h1`
   margin: 20px;
   text-align: center;
+  ${galaxy({display:"block", marginRight:"70px"})}
 `;
 const FilterContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  ${galaxy({ flexDirection: "column",width:"80%"  })}
 `;
 const Filter = styled.div`
   margin: 20px;
@@ -28,6 +30,7 @@ const FilterText = styled.span`
   ${mobile({
     marginRight: "0 ",
   })}
+  ${galaxy({display:"block",margin:"0 auto"  })}
 `;
 const Select = styled.select`
   padding: 10px;
@@ -57,10 +60,11 @@ const ProductList = () => {
       [e.target.name]: value,
     });
   };
+  
   return (
     <Container>
       <Layout>
-        <Title>{category}</Title>
+        <Title>{category.toUpperCase()}</Title>
         <FilterContainer>
           <Filter>
             <FilterText>
@@ -82,6 +86,14 @@ const ProductList = () => {
               <Option>Purple</Option>
               <Option>Yellow</Option>
               <Option>Green</Option>
+              <Option>Organe</Option>
+              <Option>White</Option>
+              <Option>Pink</Option>
+              <Option>Violet</Option>
+              <Option>Gray</Option>
+              <Option>Black</Option>
+             
+              <Option>Brown</Option>
             </Select>
             <Select
               defaultValue="chooseSize"
@@ -96,6 +108,8 @@ const ProductList = () => {
               <Option>M</Option>
               <Option>L</Option>
               <Option>XL</Option>
+              <Option>XXL</Option>
+              <Option>XXXL</Option>
             </Select>
           </Filter>
           <Filter>

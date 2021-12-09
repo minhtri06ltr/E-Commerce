@@ -5,7 +5,7 @@ import {
 } from "react-redux";
 import styled from "styled-components";
 import Layout from "../components/layouts/Layout";
-import { mobile } from "../responsive";
+import { fold, mobile } from "../responsive";
 import StripeCheckout from "react-stripe-checkout";
 import { useEffect, useState } from "react";
 
@@ -17,11 +17,18 @@ import {
   deleteCartItem,
   getCartItems,
 } from "../redux/apiRequest";
-const Container = styled.div``;
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+const Container = styled.div`
+
+`;
 const Wrapper = styled.div`
   padding: 20px;
   ${mobile({
     padding: "0",
+  })}
+  ${fold({
+    width:"110%"
   })}
 `;
 const Title = styled.h1`
@@ -155,6 +162,19 @@ const SummaryItem = styled.div`
   font-size: ${(props) =>
     props.type === "total" && "24px"};
 `;
+const Empty = styled.img`
+margin: 0 auto;
+    display: block;
+    width: 40%;
+`;
+const Message = styled.span`
+display: block;
+    text-align: center;
+    font-size: 30px;
+  margin:10px 0 ;
+    font-weight: 700;
+
+`;
 const SummaryItemText = styled.span``;
 const SummaryItemPrice = styled.span``;
 const Button = styled.button`
@@ -164,7 +184,19 @@ const Button = styled.button`
   color: white;
   font-weight: 600;
 `;
+const _exportPdf = () => {
+
+  html2canvas(document.querySelector("#capture")).then(canvas => {
+     document.body.appendChild(canvas);  // if you want see your screenshot in body.
+     var imgData = canvas.toDataURL("image/jpeg", 1.0);
+     const pdf = new jsPDF('p', 'pt', 'a4', false);
+     pdf.addImage(imgData, 'JPEG', 0, 0, 600, 0, undefined, false);
+     pdf.save("YouCart.pdf"); 
+ });
+
+}
 const Cart = () => {
+  const user = useSelector(state=>state.user)
   const KEY =
     "pk_test_51K0enCDzr6LNQ8Fc5SlrYCUSp2ORkjw2rLdlXP2j3UtWn2yz6BzSLa5i0fToYH7O6zyajt6291A8LMCJ1gsB9AQ100uMO2vlUq";
   const cart = useSelector((state) => state.cart);
@@ -227,11 +259,14 @@ const Cart = () => {
       }
       changeQuantity(dispatch,data)
   }
+  if(cart.products !=[]){
+    console.log(cart.products.length)
+  }
   return (
-    <Container>
+    <Container >
       <Layout>
         <Wrapper>
-          <Title>YOUR BAG</Title>
+          <Title >YOUR BAG</Title>
           <Top>
             <Link to="/">
               <TopButton>
@@ -244,13 +279,13 @@ const Cart = () => {
               </TopText>
               {/* <TopText>Your Wishlist(0)</TopText> */}
             </TopTexts>
-            <TopButton type="filled">
+           <Link to="/orders"> <TopButton type="filled">
               YOUR ORDERS
-            </TopButton>
+            </TopButton></Link>
           </Top>
-          <Bottom>
-            <Info>
-              {cart.products?.map(
+          <Bottom id="capture" >
+            <Info >
+              {cart.products.length != 0 && user.currentUser ? cart.products.map(
                 (product, index) => (
                   <div key={index}>
                     <ProductItem>
@@ -312,9 +347,12 @@ const Cart = () => {
                     <Hr />
                   </div>
                 ),
-              )}
+              ) : (<>
+              <Message>YOU DONT HAVE ANY PRODUCT IN CART</Message>
+              <Empty src="https://measy.org/assets/images/bitmaps/no_orders.svg"/>
+              </>)}
             </Info>
-            <Summary>
+            <Summary >
               <SummaryTitle>
                 ORDER SUMMARY
               </SummaryTitle>
@@ -350,7 +388,7 @@ const Cart = () => {
                   $ {cart.total}
                 </SummaryItemPrice>
               </SummaryItem>
-              <StripeCheckout
+          {user.currentUser && (   <> <StripeCheckout
                 name="HOLO SHOP"
                 //logo
                 image="https://i.redd.it/5m2flzftc3e71.jpg"
@@ -361,11 +399,16 @@ const Cart = () => {
                 amount={cart.total * 100}
                 token={onToken}
                 stripeKey={KEY}
-              >
-                <Button>CHECKOUT NOW</Button>
+              > <Button>CHECKOUT NOW</Button>
+               
               </StripeCheckout>
+             
+              <Button style={{margin:"20px 0"}} onClick={e=>_exportPdf()}>Export PDF FOR THIS CART</Button>
+              </>
+              )}
             </Summary>
           </Bottom>
+         
         </Wrapper>
       </Layout>
     </Container>

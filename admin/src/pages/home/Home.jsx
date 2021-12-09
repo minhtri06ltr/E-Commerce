@@ -36,7 +36,8 @@ export default function Home() {
         const response = await userRequest.get(
           "/users/stats",
         );
-        response.data.data.map((item) =>
+      
+        response.data.data.sort((a,b)=>a._id - b._id).map((item) =>
           setUserStats((prev) => [
             ...prev,
             {
@@ -50,6 +51,9 @@ export default function Home() {
       }
     };
     getStats();
+    
+   
+    
   }, [MONTHS]);
 
   return (

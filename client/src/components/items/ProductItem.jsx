@@ -45,6 +45,7 @@ const Circle = styled.div`
 const Image = styled.img`
   height: 75%;
   z-index: 2;
+ 
 `;
 
 const Icon = styled.div`
@@ -67,7 +68,7 @@ const ProductItem = ({ item }) => {
   return (
     <Container>
       <Circle />
-      <Image src={item.img} />
+      <Image src={item.img } />
       <Info>
         {/* <Icon>
           <ShoppingCartOutlined />

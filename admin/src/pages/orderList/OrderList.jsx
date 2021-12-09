@@ -4,12 +4,13 @@ import {
   GridToolbarExport,
   GridToolbarContainer,
 } from "@material-ui/data-grid";
-
+import { RemoveRedEye } from "@material-ui/icons";
 import { useEffect } from "react";
 import {
   useDispatch,
   useSelector,
 } from "react-redux";
+import {Link} from 'react-router-dom'
 import { getAllOrders } from "../../redux/apiRequest";
 
 function MyExportButton() {
@@ -34,23 +35,7 @@ export default function OrderList() {
       headerName: "ID",
       width: 200,
     },
-    {
-      field: "userId",
-      headerName: "User ID",
-      width: 200,
-      // renderCell: (params) => {
-      //   return (
-      //     <div className="userListUser">
-      //       <img
-      //         className="userListImg"
-      //         src={params.row.avatar}
-      //         alt=""
-      //       />
-      //       {params.row.username}
-      //     </div>
-      //   );
-      // },
-    },
+   
     {
       field: "createdAt",
       headerName: "Order time",
@@ -70,6 +55,23 @@ export default function OrderList() {
       field: "status",
       headerName: "Order status",
       width: 90,
+    },
+    {
+      field: "action",
+      headerName: "Action",
+      width: 150,
+      renderCell: (params) => {
+        return (
+          <>
+            <Link
+              to={"/order/getorder/" + params.row._id}
+            >
+             <RemoveRedEye/>
+            </Link>
+           
+          </>
+        );
+      },
     },
     // {
     //   field: "status",

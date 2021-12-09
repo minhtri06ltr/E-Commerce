@@ -12,6 +12,10 @@ export default function NewUser() {
     useState("");
 
   const handleClick = (e) => {
+    if(email===""||password===""||username===""){
+      alert("Please check input again");
+      return;
+    }
     e.preventDefault();
     if (!validator.isEmail(email)) {
       setErrorMessage("Invalid email");

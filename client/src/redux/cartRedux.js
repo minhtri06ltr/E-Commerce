@@ -16,7 +16,7 @@ const cartSlice = createSlice({
     addProductToCartSuccess: (state, action) => {
       state.products.push(action.payload[0]);
       let total = 0;
-
+    
       state.products.map((item, key) => {
         total =
           total + item.price * item.quantity;
@@ -47,7 +47,8 @@ const cartSlice = createSlice({
       state.products = action.payload;
       let total = 0
       state.products.map(item=>{
-        total = item.quantity*item.price;
+        total = total +  item.quantity*item.price;
+        console.log("quantity",item.quantity,"price",item.price)
       })
       state.total = total;
       state.quantity = state.products.length
@@ -57,12 +58,20 @@ const cartSlice = createSlice({
       state.isFetching = false;
     },
     incProduct:(state,action)=>{
-      console.log(action.payload)
+      console.log(action.payload);
+      let price  
       state.products.map(item=>{
         if(item.color === action.payload.color &&item.size ===action.payload.size && item._id === action.payload.productId){
           item.quantity =  item.quantity + action.payload.value
+         if(action.payload.value === 1 )
+         {
+           price = item.price;
+         }else{
+           price = - item.price
+         }
         }
       })
+      state.total = state.total + price
     },
    
     clearCart: (state) => {
