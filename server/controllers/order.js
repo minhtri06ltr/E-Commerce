@@ -117,7 +117,7 @@ exports.getOrderStats = async (req, res) => {
   const previousMonth = new Date(
     new Date().setMonth(lastMonth.getMonth() - 1),
   );
-  console.log(previousMonth);
+
   try {
     const income = await Order.aggregate([
       {
