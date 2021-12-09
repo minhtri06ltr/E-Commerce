@@ -219,6 +219,7 @@ export default function Product() {
             Create
           </button>
         </Link>
+        <Link to='/products'>  <button className="productAddButton"> Back</button></Link>
       </div>
       <div className="productTop">
         <div className="productTopLeft">

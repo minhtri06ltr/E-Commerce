@@ -9,6 +9,7 @@ import {
 import app from "../../firebase";
 import { addProduct } from "../../redux/apiRequest";
 import { useDispatch } from "react-redux";
+import {Link} from 'react-router-dom'
 export default function NewProduct() {
 
   const dispatch = useDispatch();
@@ -107,6 +108,7 @@ export default function NewProduct() {
       <h1 className="addProductTitle">
         New Product
       </h1>
+    <Link to='/products'>  <button className="productListEdit"> Back</button></Link>
       <form className="addProductForm">
         <div className="addProductItem">
           <label>Image</label>

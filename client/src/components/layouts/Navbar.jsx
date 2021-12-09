@@ -5,12 +5,13 @@ import {
 } from "@mui/icons-material";
 import { Badge } from "@mui/material";
 import { mobile, fold,galaxy } from "../../responsive";
-import { Link } from "react-router-dom";
+import { Link,useLocation } from "react-router-dom";
 import {
   useDispatch,
   useSelector,
 } from "react-redux";
 import { logout } from "../../redux/apiRequest";
+import {useState} from 'react'
 
 const Container = styled.div`
   height: 60px;
@@ -81,10 +82,11 @@ ${galaxy({ display: "none" })}
 `
 
 //render component
-const Navbar = () => {
+const Navbar = (props) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
+
   const userLogout = () => {
     console.log("2");
     logout(dispatch);
@@ -114,13 +116,16 @@ const Navbar = () => {
       </>
     );
   };
+ 
+  const location = useLocation()
+
   return (
     <Container>
       <Wrapper>
         <Left>
           <Language>EN</Language>
-        <Link to='/search'>  <MenuItem>ALL PRODUCTS</MenuItem></Link>
-        <Link to='/orders'>  <MenuItem>YOUR ORDER</MenuItem></Link>
+        <Link to='/search'  >  <MenuItem  style={{color:location.pathname ==="/search"? "red" :""}} >ALL PRODUCTS</MenuItem></Link>
+        <Link to='/orders'>  <MenuItem style={{color:location.pathname ==="/orders"? "red" :""}}>YOUR ORDER</MenuItem></Link>
         </Left>
         <Center>
           <Link to="/">
