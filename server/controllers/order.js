@@ -139,12 +139,14 @@ exports.getOrderStats = async (req, res) => {
         $project: {
           month: { $month: "$createdAt" },
           sales: "$amount",
+        
         },
       },
       {
         $group: {
           _id: "$month",
           total: { $sum: "$sales" },
+          quantity: { $sum: 1 },
         },
       },
     ]);

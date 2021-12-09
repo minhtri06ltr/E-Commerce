@@ -32,9 +32,9 @@ export default function Topbar() {
               0
             </span> */}
           </div>
-          <div className="topbarIconContainer">
+          {/* <div className="topbarIconContainer">
             <Settings />
-          </div>
+          </div> */}
           <img
             src="https://i.redd.it/5m2flzftc3e71.jpg"
             alt=""

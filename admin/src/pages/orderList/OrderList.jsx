@@ -46,11 +46,7 @@ export default function OrderList() {
       headerName: "Order amount",
       width: 90,
     },
-    {
-      field: "address",
-      headerName: "Order address",
-      width: 200,
-    },
+   
     {
       field: "status",
       headerName: "Order status",
@@ -106,7 +102,7 @@ export default function OrderList() {
     //   },
     // },
   ];
-
+        
   return (
     <div className="userList">
       <DataGrid
