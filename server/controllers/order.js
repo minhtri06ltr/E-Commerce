@@ -1,5 +1,5 @@
 const Order = require("../models/order");
-
+const mongoose = require("mongoose");
 exports.addOrder = async (req, res) => {
   const newOrder = new Order(req.body);
   try {
@@ -67,7 +67,7 @@ exports.getOrder = async (req, res) => {
     //get all user's orders
     const orders = await Order.find({
       _id: req.params.orderId,
-    }).populate("userId","username");
+    }).populate("userId", "username");
 
     res.status(200).json({
       success: true,
@@ -87,7 +87,11 @@ exports.getOrder = async (req, res) => {
 exports.getAllOrders = async (req, res) => {
   const query = req.query.new;
   try {
-    const orders = query ?  await Order.find().sort({_id: -1}).limit(5) : await Order.find();
+    const orders = query
+      ? await Order.find()
+          .sort({ _id: -1 })
+          .limit(5)
+      : await Order.find();
     res.status(200).json({
       success: true,
       message: "Get all orders successfull",
@@ -105,17 +109,29 @@ exports.getAllOrders = async (req, res) => {
 
 exports.getOrderStats = async (req, res) => {
   const productId = req.query.pid;
-  const date = new Date();
-  const lastMonth = new Date(date.setMonth(date.getMonth() - 1));
-  const previousMonth = new Date(new Date().setMonth(lastMonth.getMonth() - 1));
 
+  const date = new Date();
+  const lastMonth = new Date(
+    date.setMonth(date.getMonth() - 1),
+  );
+  const previousMonth = new Date(
+    new Date().setMonth(lastMonth.getMonth() - 1),
+  );
+  console.log(previousMonth);
   try {
     const income = await Order.aggregate([
       {
         $match: {
           createdAt: { $gte: previousMonth },
           ...(productId && {
-            products: { $elemMatch: { productId } },
+            products: {
+              $elemMatch: {
+                productId:
+                  mongoose.Types.ObjectId(
+                    productId,
+                  ),
+              },
+            },
           }),
         },
       },
@@ -132,10 +148,10 @@ exports.getOrderStats = async (req, res) => {
         },
       },
     ]);
-    console.log(income)
+    console.log(income);
     res.status(200).json({
-      success:true,
-      income
+      success: true,
+      income,
     });
   } catch (error) {
     console.log(error);
@@ -148,11 +164,11 @@ exports.getOrderStats = async (req, res) => {
 };
 
 exports.getUserOrder = async (req, res) => {
-  console.log(req.params.id)
+  console.log(req.params.id);
   try {
     const findOrder = await Order.find({
-      userId:req.params.id,
-    })
+      userId: req.params.id,
+    });
     res.status(200).json({
       success: true,
       message: "Create order successfull",

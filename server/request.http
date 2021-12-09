@@ -11,7 +11,7 @@ POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
 {
-    "username":"admin",
+    "username":"vana",
     "password":"123123"
 }
 
@@ -83,8 +83,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTA1MjE4Z
 }
 
 ###
-GET  http://localhost:5000/api/orders/income?pid=61a2edd4781dfbcda6be6908
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTIxZTJmMmU4YWFmYWRjZTkzMDMzYiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODMyMTI4MCwiZXhwIjoxNjM4NTgwNDgwfQ.LhKLebCGgcEDfNA1y9LiPOIjfZC_4dedhJV2WNeD5xQ
+GET  http://localhost:5000/api/orders/income?pid=61b0196c4c1930879f5d21ab
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTIxZTJmMmU4YWFmYWRjZTkzMDMzYiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzOTAyNDA5MiwiZXhwIjoxNjM5MjgzMjkyfQ.QDdJYUN-qBiefBWR3JywAH3875cQE1lgA6G5bQjefDE
 
 ###
 PUT  http://localhost:5000/api/products/61a3439552c4aeb5f94fbc88
@@ -113,7 +113,7 @@ POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
 {
-    "username":"admin",
+    "username":"lyminhtri",
     "password":"123123"
 }
 
@@ -138,8 +138,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTU4NDlhZ
 }
 
 ###
-GET  http://localhost:5000/api/carts/getcartitems
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTU4NDlhZjcyMmM4ZTY3ZjY4NDM0ZCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2Mzg0MzkwNjUsImV4cCI6MTYzODY5ODI2NX0.xXl5XfSKCtY7K33QFUDj0M6ggzanMMe1Wuj5dj95q1o
+GET  http://localhost:5000/api/orders/getuserorder/61a05218d2688ddaacac8304
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTA1MjE4ZDI2ODhkZGFhY2FjODMwNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2MzkwMjQ3MDEsImV4cCI6MTYzOTI4MzkwMX0.NB2cJp5OLERZLoPEOVCL1Cql9aimTJepaf4JVhvuAGY
 
 ###
 DELETE   http://localhost:5000/api/carts/removeitem
@@ -168,13 +168,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTU4NDlhZ
 GET  http://localhost:5000/api/products
 
 ###
-GET  http://localhost:5000/api/orders/getorder
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYWQ4YmZlNGU5MmJhNzUxOWYyZDFiMiIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2Mzg3NjUzNTAsImV4cCI6MTYzOTAyNDU1MH0.RcMOrvK91ueUFSHKgUVDb2cVUFSHi7JL7Xd2axR8a0Q
+GET  http://localhost:5000/api/orders/getuserorder
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTA1MjE4ZDI2ODhkZGFhY2FjODMwNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2MzkwMjQyMjEsImV4cCI6MTYzOTI4MzQyMX0.Y5UjWPTkfKIUY-iyxFvvKSOWh-fTzNZ7gjXsow-RRsM
 
 ###
 GET   http://localhost:5000/api/products/getproductsale/61a3438152c4aeb5f94fbc86
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTIxZTJmMmU4YWFmYWRjZTkzMDMzYiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODcwMzY5NiwiZXhwIjoxNjM4OTYyODk2fQ.qOuR7Nvt1k8gpDX3k90Hb3HAQ7olSqDMB1hSHeV1sNk
-
-###
-GET   http://localhost:5000/api/orders/getorder/61a4f5d6401f75fa2e6e1311
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTIxZTJmMmU4YWFmYWRjZTkzMDMzYiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODg2MjcyMywiZXhwIjoxNjM5MTIxOTIzfQ.bS2Vcwp60Xoy8tSwbvheqV3hEhZ3Kjo0_0O9iNWLop8
