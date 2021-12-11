@@ -250,8 +250,8 @@ const ProductDetail = () => {
       <div
         class="fb-comments"
         data-href="<?php the_permalink(); ?>"
-        data-width=""
-        data-numposts="5"
+        data-width="100%"
+        data-numposts="10"
       ></div>
     </>
   );
