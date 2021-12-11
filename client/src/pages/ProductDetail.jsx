@@ -22,9 +22,9 @@ const ImgContainer = styled.div`
   flex: 1;
 `;
 const Image = styled.img`
-width: 100%;
-object-fit: contain;
-height: 120vh;
+  width: 100%;
+  object-fit: contain;
+  height: 120vh;
   ${mobile({
     height: "40vh ",
   })}
@@ -60,16 +60,16 @@ const FilterContainer = styled.div`
   display: flex;
   justify-content: space-around;
   ${fold({
-   flexDirection:"column",
-   alignItems:"center",
+    flexDirection: "column",
+    alignItems: "center",
   })}
 `;
 const Filter = styled.div`
   display: flex;
   align-items: center;
   ${fold({
-    margin:"10px auto"
-   })}
+    margin: "10px auto",
+  })}
 `;
 const FilterTitle = styled.span`
   font-size: 20px;
@@ -169,77 +169,91 @@ const ProductDetail = () => {
     addToCart(dispatch, cartItems);
   };
   return (
-    <Container>
-      <Layout>
-        <Wrapper>
-          <ImgContainer>
-            <Image src={product.img} />
-          </ImgContainer>
-          <InfoContainer>
-            <Title>{product.title}</Title>
-            <Description>
-              {product.description}
-            </Description>
-            <Price>$ {product.price}</Price>
-            <FilterContainer>
-              <Filter>
-                <FilterTitle>Color</FilterTitle>
-                {product.color?.map(
-                  (c, index) => (
-                    <FilterColor
-                      color={c}
-                      key={index}
-                      onClick={() => setColor(c)}
-                    />
-                  ),
-                )}
-              </Filter>
-              <Filter>
-                <FilterTitle>Size</FilterTitle>
-                
-                <FilterSize
-                  onChange={(e) =>
-                    setSize(e.target.value)
-                  }
-                 
-                >
-                  <FilterSizeOption selected="true" disabled="disabled"  >Choose your size</FilterSizeOption>
-                  {product.size?.map(
-                    (s, index) => (
-                      <FilterSizeOption
+    <>
+      <Container>
+        <Layout>
+          <Wrapper>
+            <ImgContainer>
+              <Image src={product.img} />
+            </ImgContainer>
+            <InfoContainer>
+              <Title>{product.title}</Title>
+              <Description>
+                {product.description}
+              </Description>
+              <Price>$ {product.price}</Price>
+              <FilterContainer>
+                <Filter>
+                  <FilterTitle>Color</FilterTitle>
+                  {product.color?.map(
+                    (c, index) => (
+                      <FilterColor
+                        color={c}
                         key={index}
-                      >
-                        {s}
-                      </FilterSizeOption>
+                        onClick={() =>
+                          setColor(c)
+                        }
+                      />
                     ),
                   )}
-                </FilterSize>
-              </Filter>
-            </FilterContainer>
-            <AddContainer>
-              <QuantityContainer>
-                <Remove
-                  onClick={() =>
-                    handleQuantity("dec")
-                  }
-                  style={{ cursor: "pointer" }}
-                />
-                <Quantity>{quantity}</Quantity>
-                <Add
-                  onClick={() =>
-                    handleQuantity("inc")
-                  }
-                  style={{ cursor: "pointer" }}
-                />
-              </QuantityContainer>
-              <Button onClick={handleAddToCart}>
-                ADD TO CART
-              </Button>
-            </AddContainer>
-          </InfoContainer>
-        </Wrapper>
-      </Layout>
-    </Container>
+                </Filter>
+                <Filter>
+                  <FilterTitle>Size</FilterTitle>
+
+                  <FilterSize
+                    onChange={(e) =>
+                      setSize(e.target.value)
+                    }
+                  >
+                    <FilterSizeOption
+                      selected="true"
+                      disabled="disabled"
+                    >
+                      Choose your size
+                    </FilterSizeOption>
+                    {product.size?.map(
+                      (s, index) => (
+                        <FilterSizeOption
+                          key={index}
+                        >
+                          {s}
+                        </FilterSizeOption>
+                      ),
+                    )}
+                  </FilterSize>
+                </Filter>
+              </FilterContainer>
+              <AddContainer>
+                <QuantityContainer>
+                  <Remove
+                    onClick={() =>
+                      handleQuantity("dec")
+                    }
+                    style={{ cursor: "pointer" }}
+                  />
+                  <Quantity>{quantity}</Quantity>
+                  <Add
+                    onClick={() =>
+                      handleQuantity("inc")
+                    }
+                    style={{ cursor: "pointer" }}
+                  />
+                </QuantityContainer>
+                <Button onClick={handleAddToCart}>
+                  ADD TO CART
+                </Button>
+              </AddContainer>
+            </InfoContainer>
+          </Wrapper>
+        </Layout>
+      </Container>
+      <div
+        class="fb-comments"
+        data-href="https://holo-shop.netlify.app"
+        data-width=""
+        data-numposts="5"
+      ></div>
+    </>
   );
 };
 
