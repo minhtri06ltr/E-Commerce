@@ -245,14 +245,14 @@ const ProductDetail = () => {
               </AddContainer>
             </InfoContainer>
           </Wrapper>
+          <div
+            class="fb-comments"
+            data-href={`https://holo-shop.netlify.app/product/${productId}`}
+            data-width="100%"
+            data-numposts="10"
+          ></div>
         </Layout>
       </Container>
-      <div
-        class="fb-comments"
-        data-href={`https://holo-shop.netlify.app/product/${productId}`}
-        data-width="100%"
-        data-numposts="10"
-      ></div>
     </>
   );
 };
