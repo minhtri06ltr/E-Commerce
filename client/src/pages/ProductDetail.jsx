@@ -249,7 +249,7 @@ const ProductDetail = () => {
       </Container>
       <div
         class="fb-comments"
-        data-href="https://holo-shop.netlify.app"
+        data-href="<?php the_permalink(); ?>"
         data-width=""
         data-numposts="5"
       ></div>
