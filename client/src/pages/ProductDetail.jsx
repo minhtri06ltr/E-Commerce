@@ -168,6 +168,11 @@ const ProductDetail = () => {
     ];
     addToCart(dispatch, cartItems);
   };
+  useEffect(() => {
+    if (window.FB) {
+        window.FB.XFBML.parse();
+    }
+},[]);
   return (
     <>
       <Container>

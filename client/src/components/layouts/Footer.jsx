@@ -9,6 +9,7 @@ import {
 } from "@mui/icons-material";
 import { mobile, galaxy } from "../../responsive";
 import styled from "styled-components";
+import { useEffect } from "react";
 
 const Container = styled.div`
   display: flex;
@@ -83,6 +84,11 @@ const Payment = styled.img`
   width: 50%;
 `;
 const Footer = () => {
+  useEffect(() => {
+    if (window.FB) {
+        window.FB.XFBML.parse();
+    }
+},[]);
   return (
     <>
       <Container>
@@ -155,6 +161,7 @@ const Footer = () => {
         data-adapt-container-width="true"
         data-hide-cover="false"
         data-show-facepile="true"
+        style={{float:"right",margin:"20px"}}
       >
         <blockquote
           cite="https://www.facebook.com/HOLO-Support-100501352263768"
