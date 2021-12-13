@@ -15,12 +15,16 @@ import "./App.css";
 import { useSelector } from "react-redux";
 import Search from "./pages/Search";
 import Order from "./pages/Order";
-import { useEffect } from "react";
+
+
 const App = () => {
-  
+
   const user = useSelector(
     (state) => state.user.currentUser,
   );
+ 
+    
+  
   return (
     <Router>
       <Switch>

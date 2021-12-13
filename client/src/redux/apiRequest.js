@@ -44,7 +44,7 @@ export const login = async (dispatch, user) => {
       user,
     );
     dispatch(loginSuccess(response.data));
-    getCartItems(dispatch)
+    setTimeout(() => { getCartItems(dispatch) }, 1000);
   } catch (error) {
     dispatch(loginFailure());
   }

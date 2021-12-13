@@ -26,7 +26,7 @@ const Success = () => {
     orientationLandscape: false,
     logo: {
         src: logo,
-        width: 53.33, //aspect ratio = width/height
+        width: 50.33, //aspect ratio = width/height
         height: 26.66,
         margin: {
             top: 0, //negative or positive num, from the current position
