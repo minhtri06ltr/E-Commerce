@@ -126,17 +126,19 @@ exports.getAllProducts = async (req, res) => {
 exports.getProductSale = async (req, res) => {
   try {
     const orders = await Order.find();
-  
+
     let count = 0;
-    orders.map((item,index)=>{
-      item.products.map(product=>{
-        if(product.productId.toString() === req.params.id){
+    orders.map((item, index) => {
+      item.products.map((product) => {
+        if (
+          product.productId.toString() ===
+          req.params.id
+        ) {
           count++;
         }
-      })
-    })
-  
-   
+      });
+    });
+
     res.status(200).json({
       success: true,
       message: "Count sale successfull",

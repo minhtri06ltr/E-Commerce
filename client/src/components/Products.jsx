@@ -29,7 +29,13 @@ const Products = ({
             : "/products",
         );
 
-        setProducts(response.data.products);
+        setProducts(
+          response.data.productss.sort(
+            (a, b) =>
+              new Date(b.createdAt) -
+              new Date(a.createdAt),
+          ),
+        );
       } catch (error) {
         console.log(error);
       }
@@ -57,7 +63,9 @@ const Products = ({
         //get all previous filtered product
         [...prev].sort(
           //compare two product -> return if first one is greater -> render first
-          (a, b) => new Date(a.createdAt) - new Date(b.createdAt),
+          (a, b) =>
+            new Date(a.createdAt) -
+            new Date(b.createdAt),
         ),
       );
     } else if (sort === "asc") {
@@ -75,7 +83,7 @@ const Products = ({
     }
   }, [sort]);
   //function
-  console.log(filteredProducts)
+  console.log(filteredProducts);
 
   return (
     <Container>
